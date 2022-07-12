@@ -2,11 +2,11 @@ import {
   IInvoiceTableProps,
   IInvoiceTableMapProps,
 } from "./InvoicesTable.types";
-import { InvoiceTableRow } from "../InvoiceTableRow";
+import { InvoicesTableRow } from "../InvoicesTableRow";
 
 const InvoicesTable = ({ invoices }: IInvoiceTableProps) => {
   const invoicesList = invoices.map((invoice: IInvoiceTableMapProps) => (
-    <InvoiceTableRow
+    <InvoicesTableRow
       id={invoice.id}
       date={invoice.date}
       amount={invoice.amount}

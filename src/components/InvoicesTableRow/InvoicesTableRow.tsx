@@ -1,7 +1,7 @@
 import React from "react";
 
-const InvoiceTableRow = () => {
+const InvoicesTableRow = () => {
   return <div>InvoiceTableRow</div>;
 };
 
-export { InvoiceTableRow };
+export { InvoicesTableRow };
