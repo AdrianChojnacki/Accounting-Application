@@ -1,5 +1,10 @@
-import React from "react";
+import { InvoicesTable } from "../components";
+import Invoices from "../dummy-data.json";
 
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <div>
+      <InvoicesTable invoices={Invoices} />
+    </div>
+  );
 }
