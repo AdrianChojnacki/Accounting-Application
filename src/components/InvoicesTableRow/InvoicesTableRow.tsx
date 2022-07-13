@@ -1,7 +1,7 @@
-import React from "react";
+import { IInvoicesTableRowProps } from "./InvoicesTableRow.types";
 
-const InvoicesTableRow = () => {
-  return <div>InvoiceTableRow</div>;
+const InvoicesTableRow = ({ id, date, amount }: IInvoicesTableRowProps) => {
+  return <div>{`${id}, ${date}, ${amount}`}</div>;
 };
 
 export { InvoicesTableRow };

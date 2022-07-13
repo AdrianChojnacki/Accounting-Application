@@ -1,11 +1,8 @@
-import {
-  IInvoiceTableProps,
-  IInvoiceTableMapProps,
-} from "./InvoicesTable.types";
+import { IInvoicesTableProps } from "./InvoicesTable.types";
 import { InvoicesTableRow } from "../InvoicesTableRow";
 
-const InvoicesTable = ({ invoices }: IInvoiceTableProps) => {
-  const invoicesList = invoices.map((invoice: IInvoiceTableMapProps) => (
+const InvoicesTable = ({ invoices }: IInvoicesTableProps) => {
+  const invoicesList = invoices.map((invoice) => (
     <InvoicesTableRow
       id={invoice.id}
       date={invoice.date}
