@@ -1,5 +1,5 @@
-import React from "react";
+import { PageWrapper } from "../components";
 
 export default function PageNotFound() {
-  return <div>PageNotFound</div>;
+  return <PageWrapper>PageNotFound</PageWrapper>;
 }

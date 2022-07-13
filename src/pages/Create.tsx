@@ -1,5 +1,5 @@
-import React from "react";
+import { PageWrapper } from "../components";
 
 export default function Create() {
-  return <div>Create</div>;
+  return <PageWrapper>Create</PageWrapper>;
 }

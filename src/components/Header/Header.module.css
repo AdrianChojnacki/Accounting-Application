@@ -1,0 +1,12 @@
+.header {
+  padding: 20px;
+  background-color: #ffb562;
+}
+
+.header .link {
+  text-decoration: none;
+}
+
+.header .btn {
+  background-color: #3ab0ff;
+}
