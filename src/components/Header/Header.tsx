@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
+import { Stack, Button } from "@mui/material";
 import HeaderCSS from "./Header.module.css";
 
 const Header = () => {
