@@ -7,6 +7,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
+import InvoicesTableCSS from "./InvoicesTable.module.css";
 import { IInvoicesTableProps } from "./InvoicesTable.types";
 
 const InvoicesTable = ({ invoices }: IInvoicesTableProps) => {
@@ -25,7 +26,7 @@ const InvoicesTable = ({ invoices }: IInvoicesTableProps) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+        <TableHead className={InvoicesTableCSS.head}>
           <TableRow>
             <TableCell>No.</TableCell>
             <TableCell align="right">Created</TableCell>
