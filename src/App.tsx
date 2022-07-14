@@ -1,19 +1,49 @@
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Header } from "./components";
-import Home from "./pages/Home";
-import Create from "./pages/Create";
-import Invoice from "./pages/Invoice";
-import PageNotFound from "./pages/PageNotFound";
+
+const LazyHome = React.lazy(() => import("./pages/Home"));
+const LazyCreate = React.lazy(() => import("./pages/Create"));
+const LazyInvoice = React.lazy(() => import("./pages/Invoice"));
+const LazyPageNotFound = React.lazy(() => import("./pages/PageNotFound"));
 
 function App() {
   return (
     <Router>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/create" element={<Create />} />
-        <Route path="/invoice/:id" element={<Invoice />} />
-        <Route path="*" element={<PageNotFound />} />
+        <Route
+          path="/"
+          element={
+            <React.Suspense fallback="Loading...">
+              <LazyHome />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/create"
+          element={
+            <React.Suspense fallback="Loading...">
+              <LazyCreate />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/invoice/:id"
+          element={
+            <React.Suspense fallback="Loading...">
+              <LazyInvoice />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <React.Suspense fallback="Loading...">
+              <LazyPageNotFound />
+            </React.Suspense>
+          }
+        />
       </Routes>
     </Router>
   );
