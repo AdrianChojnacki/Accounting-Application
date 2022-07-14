@@ -1,10 +1,25 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { PageWrapper, InvoicesTable } from "../components";
-import Data from "../server/db.json";
 
 export default function Home() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/posts")
+      .then((res) => {
+        console.log(res);
+        setPosts(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <PageWrapper>
-      <InvoicesTable invoices={Data.posts} />
+      <InvoicesTable invoices={posts} />
     </PageWrapper>
   );
 }
