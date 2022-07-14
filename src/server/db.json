@@ -1,3 +1,28 @@
 {
-  "posts": [{ "id": 1, "title": "json-server", "author": "typicode" }]
+  "posts": [
+    {
+      "id": "123asd21",
+      "created": "20-10-2011",
+      "until": "27-10-2011",
+      "amount": 999
+    },
+    {
+      "id": "234sds22",
+      "created": "22-05-2014",
+      "until": "29-05-2014",
+      "amount": 123
+    },
+    {
+      "id": "23lkf32",
+      "created": "21-07-2012",
+      "until": "28-07-2012",
+      "amount": 4562
+    },
+    {
+      "id": "sdkfj92ks",
+      "created": "13-02-2008",
+      "until": "20-02-2008",
+      "amount": 567
+    }
+  ]
 }

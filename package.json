@@ -28,7 +28,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prepare": "husky install",
-    "server": "json-server -p 3001 ./src/server/db.json"
+    "server": "json-server -p 3001 --watch ./src/server/db.json"
   },
   "eslintConfig": {
     "extends": [

@@ -1,10 +1,10 @@
 import { PageWrapper, InvoicesTable } from "../components";
-import Invoices from "../dummy-data.json";
+import Data from "../server/db.json";
 
 export default function Home() {
   return (
     <PageWrapper>
-      <InvoicesTable invoices={Invoices} />
+      <InvoicesTable invoices={Data.posts} />
     </PageWrapper>
   );
 }
