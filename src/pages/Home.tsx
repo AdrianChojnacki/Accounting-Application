@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { PageWrapper, InvoicesTable } from "../components";
+import { withPageWrapper, InvoicesTable } from "../components";
+
+const InvoicesTableWithPageWrapper = withPageWrapper(InvoicesTable);
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -17,9 +19,5 @@ export default function Home() {
       });
   }, []);
 
-  return (
-    <PageWrapper>
-      <InvoicesTable invoices={posts} />
-    </PageWrapper>
-  );
+  return <InvoicesTableWithPageWrapper invoices={posts} />;
 }

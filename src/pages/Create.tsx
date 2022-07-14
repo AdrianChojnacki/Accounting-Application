@@ -1,5 +1,7 @@
-import { PageWrapper } from "../components";
+import { withPageWrapper, PageContent } from "../components";
+
+const PageContentWithPageWrapper = withPageWrapper(PageContent);
 
 export default function Create() {
-  return <PageWrapper>Create</PageWrapper>;
+  return <PageContentWithPageWrapper content="Create" />;
 }

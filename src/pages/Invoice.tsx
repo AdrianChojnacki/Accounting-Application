@@ -1,8 +1,12 @@
 import { useParams } from "react-router-dom";
-import { PageWrapper } from "../components";
+import { withPageWrapper, PageContent } from "../components";
+
+const PageContentWithPageWrapper = withPageWrapper(PageContent);
 
 export default function Invoice() {
   const { id } = useParams();
 
-  return <PageWrapper>Invoice {id}</PageWrapper>;
+  const content = `Invoice ${id}`;
+
+  return <PageContentWithPageWrapper content={content} />;
 }

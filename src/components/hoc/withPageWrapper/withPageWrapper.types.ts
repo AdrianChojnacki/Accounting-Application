@@ -1,3 +1,3 @@
 export interface IPageWrapperProps {
-  children: any;
+  Component: React.ComponentClass;
 }

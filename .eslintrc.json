@@ -37,9 +37,9 @@
         "avoidEscape": true
       }
     ],
-    "react/jsx-uses-react": ["off"],
-    "react/react-in-jsx-scope": ["off"],
-    "react/jsx-props-no-spreading": ["warn"],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
     "no-shadow": "off",
     "react/function-component-definition": "off",
     "import/prefer-default-export": "off",
