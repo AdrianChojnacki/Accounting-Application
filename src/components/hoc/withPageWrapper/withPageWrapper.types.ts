@@ -1,3 +1,3 @@
-export interface IPageWrapperProps {
-  Component: React.ComponentClass;
+export interface IWithPageWrapperProps {
+  Component: any;
 }
