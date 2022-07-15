@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Header } from "./components";
 
 const LazyHome = React.lazy(() => import("./pages/Home"));
 const LazyCreate = React.lazy(() => import("./pages/Create"));
@@ -10,7 +9,6 @@ const LazyPageNotFound = React.lazy(() => import("./pages/PageNotFound"));
 function App() {
   return (
     <Router>
-      <Header />
       <Routes>
         <Route
           path="/"

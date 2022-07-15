@@ -19,5 +19,10 @@ export default function Home() {
       });
   }, []);
 
-  return <InvoicesTableWithPageWrapper invoices={posts} />;
+  return (
+    <InvoicesTableWithPageWrapper
+      invoices={posts}
+      render={() => "Kogucik © 2022"}
+    />
+  );
 }

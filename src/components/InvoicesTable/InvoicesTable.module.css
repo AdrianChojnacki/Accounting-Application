@@ -6,3 +6,9 @@
   color: #fff;
   font-weight: 700;
 }
+
+.footer {
+  margin-top: 10px;
+  font-size: 12px;
+  text-align: right;
+}

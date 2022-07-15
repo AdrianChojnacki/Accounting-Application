@@ -10,7 +10,7 @@ import {
 import InvoicesTableCSS from "./InvoicesTable.module.css";
 import { IInvoicesTableProps } from "./InvoicesTable.types";
 
-const InvoicesTable = ({ invoices }: IInvoicesTableProps) => {
+const InvoicesTable = ({ invoices, render }: IInvoicesTableProps) => {
   const invoicesList = invoices.map((invoice) => (
     <TableRow
       key={invoice.id}
@@ -24,19 +24,22 @@ const InvoicesTable = ({ invoices }: IInvoicesTableProps) => {
   ));
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead className={InvoicesTableCSS.head}>
-          <TableRow>
-            <TableCell>No.</TableCell>
-            <TableCell align="right">Created</TableCell>
-            <TableCell align="right">Valid until</TableCell>
-            <TableCell align="right">Amount</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>{invoicesList}</TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead className={InvoicesTableCSS.head}>
+            <TableRow>
+              <TableCell>No.</TableCell>
+              <TableCell align="right">Created</TableCell>
+              <TableCell align="right">Valid until</TableCell>
+              <TableCell align="right">Amount</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>{invoicesList}</TableBody>
+        </Table>
+      </TableContainer>
+      <p className={InvoicesTableCSS.footer}>{render()}</p>
+    </>
   );
 };
 
