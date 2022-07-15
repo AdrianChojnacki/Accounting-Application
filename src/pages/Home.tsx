@@ -15,7 +15,6 @@ export default function Home() {
     axios
       .get("http://localhost:3001/posts")
       .then((res) => {
-        console.log(res);
         setPosts(res.data);
       })
       .catch((err) => {
