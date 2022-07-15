@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  withPageWrapper,
-  InvoicesTable,
-  IInvoicesTableRender,
-} from "../components";
+import { withPageWrapper, InvoicesTable } from "../components";
 
 const InvoicesTableWithPageWrapper = withPageWrapper(InvoicesTable);
 
@@ -25,7 +21,7 @@ export default function Home() {
   return (
     <InvoicesTableWithPageWrapper
       invoices={posts}
-      render={(year: IInvoicesTableRender) => `Księgowość Kogucik © ${year}`}
+      render={(company: string, year: string) => `${company} © ${year}`}
     />
   );
 }
