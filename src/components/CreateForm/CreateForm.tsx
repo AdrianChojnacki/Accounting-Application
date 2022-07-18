@@ -36,6 +36,9 @@ const CreateForm = () => {
                 disablePast
               />
             </Grid>
+            <Grid item xs>
+              <TextField label="Amount" variant="outlined" />
+            </Grid>
           </Grid>
         </Box>
       </LocalizationProvider>

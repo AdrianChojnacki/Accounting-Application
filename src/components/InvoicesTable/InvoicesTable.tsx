@@ -32,9 +32,9 @@ const InvoicesTable = ({ invoices, render }: IInvoicesTableProps) => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead className={InvoicesTableCSS.head}>
             <TableRow>
-              <TableCell>No.</TableCell>
+              <TableCell>ID</TableCell>
               <TableCell align="right">Created</TableCell>
-              <TableCell align="right">Valid until</TableCell>
+              <TableCell align="right">Payment until</TableCell>
               <TableCell align="right">Amount</TableCell>
             </TableRow>
           </TableHead>
