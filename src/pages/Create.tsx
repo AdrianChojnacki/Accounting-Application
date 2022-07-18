@@ -1,7 +1,7 @@
-import { withPageWrapper, PageContent } from "../components";
+import { withPageWrapper, CreateForm } from "../components";
 
-const PageContentWithPageWrapper = withPageWrapper(PageContent);
+const CreateFormWithPageWrapper = withPageWrapper(CreateForm);
 
 export default function Create() {
-  return <PageContentWithPageWrapper content="Create" />;
+  return <CreateFormWithPageWrapper />;
 }
