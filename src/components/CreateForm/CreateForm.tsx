@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, Grid, TextField } from "@mui/material";
+import { Box, Button, Grid, TextField } from "@mui/material";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
@@ -25,10 +25,17 @@ const CreateForm = () => {
   };
 
   return (
-    <form>
+    <form
+      action="/"
+      method="POST"
+      onSubmit={(e) => {
+        e.preventDefault();
+        alert("Submitted form!");
+      }}
+    >
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={2} rowSpacing={3}>
+          <Grid container spacing={2} rowSpacing={2}>
             <Grid item xs={12} sm={4}>
               <DesktopDatePicker
                 label="Creation date"
@@ -63,6 +70,15 @@ const CreateForm = () => {
                 onChange={handleAmountChange}
                 className={CreateFormCSS.input}
               />
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              <Button
+                type="submit"
+                variant="contained"
+                className={CreateFormCSS.btn}
+              >
+                Submit
+              </Button>
             </Grid>
           </Grid>
         </Box>
