@@ -8,12 +8,12 @@ const Header = () => {
       <Stack spacing={2} direction="row">
         <Link to="/" className={HeaderCSS.link}>
           <Button variant="contained" className={HeaderCSS.btn}>
-            INVOICES
+            INVOICES LIST
           </Button>
         </Link>
         <Link to="/create" className={HeaderCSS.link}>
           <Button variant="contained" className={HeaderCSS.btn}>
-            CREATE
+            CREATE INVOICE
           </Button>
         </Link>
       </Stack>
