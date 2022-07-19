@@ -3,5 +3,5 @@
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-size: 14px;
   color: #f87474;
-  transform: translate(14px, 2px);
+  transform: translateX(14px);
 }

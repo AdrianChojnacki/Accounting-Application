@@ -60,7 +60,7 @@ const CreateForm = () => {
     <form action="/" method="POST" onSubmit={handleSubmit(onSubmit)}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={2} rowSpacing={2}>
+          <Grid container spacing={2} rowSpacing={4}>
             <Grid item xs={12} sm={4}>
               <Controller
                 name="created"
@@ -105,7 +105,7 @@ const CreateForm = () => {
               <Controller
                 name="amount"
                 control={control}
-                defaultValue="0"
+                defaultValue="1"
                 rules={{ required: true, min: 1 }}
                 render={({ field }) => (
                   <TextField
