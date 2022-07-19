@@ -105,22 +105,20 @@ const CreateForm = () => {
               <Controller
                 name="amount"
                 control={control}
-                defaultValue="1"
-                rules={{ required: true, min: 1 }}
+                defaultValue="0"
+                rules={{ required: true, min: 0.01 }}
                 render={({ field }) => (
                   <TextField
                     {...field}
                     label="Amount"
                     type="number"
                     variant="outlined"
-                    InputProps={{ inputProps: { min: 0 } }}
+                    InputProps={{ inputProps: { min: 0, step: 0.01 } }}
                     className={CreateFormCSS.input}
                   />
                 )}
               />
-              {errors.amount && (
-                <ErrorMessage text="Amount should be at least 1" />
-              )}
+              {errors.amount && <ErrorMessage text="Amount cannot be 0" />}
             </Grid>
             <Grid item xs={12} sm={12}>
               <Button
