@@ -28,11 +28,7 @@ const CreateForm = () => {
       paymentDateBeforeCreationDate: false,
       noAmount: false,
     });
-  const {
-    control,
-    handleSubmit,
-    // formState: { errors },
-  } = useForm<IFormInputs>();
+  const { control, handleSubmit } = useForm<IFormInputs>();
 
   const formValidation = (created: object, until: object, amount: string) => {
     let noCreationDate = false;
@@ -69,7 +65,6 @@ const CreateForm = () => {
     let { created, until, amount } = data;
 
     const isFormValid = formValidation(created, until, amount);
-    console.log(isFormValid);
 
     if (!isFormValid) return;
 
@@ -97,9 +92,6 @@ const CreateForm = () => {
         until,
         amount,
       })
-      .then((res) => {
-        console.log(res);
-      })
       .catch((err) => {
         console.log(err);
       });
@@ -115,7 +107,6 @@ const CreateForm = () => {
                 name="created"
                 control={control}
                 defaultValue={new Date()}
-                // rules={{ required: true }}
                 render={({ field }) => (
                   <DesktopDatePicker
                     {...field}
@@ -128,7 +119,6 @@ const CreateForm = () => {
                   />
                 )}
               />
-              {/* {errors.created && <ErrorMessage text="Pick a date" />} */}
               {validationErrors.noCreationDate && (
                 <ErrorMessage text="Pick a date" />
               )}
@@ -138,7 +128,6 @@ const CreateForm = () => {
                 name="until"
                 control={control}
                 defaultValue={new Date()}
-                // rules={{ required: true }}
                 render={({ field }) => (
                   <DesktopDatePicker
                     {...field}
@@ -151,7 +140,6 @@ const CreateForm = () => {
                   />
                 )}
               />
-              {/* {errors.until && <ErrorMessage text="Pick a date" />} */}
               {validationErrors.noPaymentDate && (
                 <ErrorMessage text="Pick a date" />
               )}
@@ -164,7 +152,6 @@ const CreateForm = () => {
                 name="amount"
                 control={control}
                 defaultValue="0"
-                // rules={{ required: true, min: 0.01 }}
                 render={({ field }) => (
                   <TextField
                     {...field}
@@ -176,7 +163,6 @@ const CreateForm = () => {
                   />
                 )}
               />
-              {/* {errors.amount && <ErrorMessage text="Amount cannot be 0" />} */}
               {validationErrors.noAmount && (
                 <ErrorMessage text="Amount cannot be 0" />
               )}
