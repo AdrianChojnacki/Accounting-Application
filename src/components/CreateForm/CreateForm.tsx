@@ -1,12 +1,13 @@
 import { useForm, Controller } from "react-hook-form";
+import axios from "axios";
 import { Box, Button, Grid, TextField } from "@mui/material";
 import { LocalizationProvider, DesktopDatePicker } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import CreateFormCSS from "./CreateForm.module.css";
 
 interface IFormInputs {
-  creationDate: Date | null;
-  paymentDate: Date | null;
+  created: Date | null;
+  until: Date | null;
   amount: string | null;
 }
 
@@ -18,27 +19,40 @@ const CreateForm = () => {
   } = useForm<IFormInputs>();
 
   const onSubmit = (data: any) => {
-    let { creationDate, paymentDate, amount } = data;
+    let { created, until, amount } = data;
 
-    let creationDay = creationDate.getDate();
+    let creationDay = created.getDate();
     if (creationDay < 10) creationDay = `0${creationDay}`;
-    let creationMonth = creationDate.getMonth() + 1;
+    let creationMonth = created.getMonth() + 1;
     if (creationMonth < 10) creationMonth = `0${creationMonth}`;
-    const creationYear = creationDate.getFullYear();
+    const creationYear = created.getFullYear();
 
-    creationDate = `${creationDay}/${creationMonth}/${creationYear}`;
-
-    let paymentDay = paymentDate.getDate();
+    let paymentDay = until.getDate();
     if (paymentDay < 10) paymentDay = `0${paymentDay}`;
-    let paymentMonth = paymentDate.getMonth() + 1;
+    let paymentMonth = until.getMonth() + 1;
     if (paymentMonth < 10) paymentMonth = `0${paymentMonth}`;
-    const paymentYear = paymentDate.getFullYear();
+    const paymentYear = until.getFullYear();
 
-    paymentDate = `${paymentDay}/${paymentMonth}/${paymentYear}`;
-
+    const id = Math.floor(1000000 + Math.random() * 9000000);
+    created = `${creationDay}/${creationMonth}/${creationYear}`;
+    until = `${paymentDay}/${paymentMonth}/${paymentYear}`;
     amount = +amount;
 
-    console.log(creationDate, paymentDate, amount);
+    console.log(created, until, amount);
+
+    axios
+      .post("http://localhost:3001/posts", {
+        id,
+        created,
+        until,
+        amount,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -48,7 +62,7 @@ const CreateForm = () => {
           <Grid container spacing={2} rowSpacing={2}>
             <Grid item xs={12} sm={4}>
               <Controller
-                name="creationDate"
+                name="created"
                 control={control}
                 defaultValue={new Date()}
                 rules={{ required: true }}
@@ -67,7 +81,7 @@ const CreateForm = () => {
             </Grid>
             <Grid item xs={12} sm={4}>
               <Controller
-                name="paymentDate"
+                name="until"
                 control={control}
                 defaultValue={new Date()}
                 rules={{ required: true }}
