@@ -3,6 +3,7 @@ import axios from "axios";
 import { Box, Button, Grid, TextField } from "@mui/material";
 import { LocalizationProvider, DesktopDatePicker } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { ErrorMessage } from "..";
 import CreateFormCSS from "./CreateForm.module.css";
 
 interface IFormInputs {
@@ -15,7 +16,7 @@ const CreateForm = () => {
   const {
     control,
     handleSubmit,
-    // formState: { errors },
+    formState: { errors },
   } = useForm<IFormInputs>();
 
   const onSubmit = (data: any) => {
@@ -78,6 +79,7 @@ const CreateForm = () => {
                   />
                 )}
               />
+              {errors.created && <ErrorMessage text="Pick a date" />}
             </Grid>
             <Grid item xs={12} sm={4}>
               <Controller
@@ -97,13 +99,14 @@ const CreateForm = () => {
                   />
                 )}
               />
+              {errors.until && <ErrorMessage text="Pick a date" />}
             </Grid>
             <Grid item xs={12} sm={4}>
               <Controller
                 name="amount"
                 control={control}
                 defaultValue="0"
-                rules={{ required: true }}
+                rules={{ required: true, min: 1 }}
                 render={({ field }) => (
                   <TextField
                     {...field}
@@ -115,6 +118,9 @@ const CreateForm = () => {
                   />
                 )}
               />
+              {errors.amount && (
+                <ErrorMessage text="Amount should be at least 1" />
+              )}
             </Grid>
             <Grid item xs={12} sm={12}>
               <Button
