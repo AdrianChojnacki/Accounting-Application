@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 import { Box, Button, Grid, TextField } from "@mui/material";
@@ -12,15 +13,65 @@ interface IFormInputs {
   amount: string | null;
 }
 
+interface IFormValidationErrors {
+  noCreationDate: boolean;
+  noPaymentDate: boolean;
+  paymentDateBeforeCreationDate: boolean;
+  noAmount: boolean;
+}
+
 const CreateForm = () => {
+  const [validationErrors, setValidationErrors] =
+    useState<IFormValidationErrors>({
+      noCreationDate: false,
+      noPaymentDate: false,
+      paymentDateBeforeCreationDate: false,
+      noAmount: false,
+    });
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
   } = useForm<IFormInputs>();
+
+  const formValidation = (created: object, until: object, amount: string) => {
+    let noCreationDate = false;
+    let noPaymentDate = false;
+    let paymentDateBeforeCreationDate = false;
+    let noAmount = false;
+
+    if (!created) noCreationDate = true;
+    if (!until) noPaymentDate = true;
+    if (created && until && created > until)
+      paymentDateBeforeCreationDate = true;
+    if (amount === "0") noAmount = true;
+
+    setValidationErrors({
+      noCreationDate,
+      noPaymentDate,
+      paymentDateBeforeCreationDate,
+      noAmount,
+    });
+
+    if (
+      !noCreationDate &&
+      !noPaymentDate &&
+      !paymentDateBeforeCreationDate &&
+      !noAmount
+    ) {
+      return true;
+    }
+
+    return false;
+  };
 
   const onSubmit = (data: any) => {
     let { created, until, amount } = data;
+
+    const isFormValid = formValidation(created, until, amount);
+    console.log(isFormValid);
+
+    if (!isFormValid) return;
 
     let creationDay = created.getDate();
     if (creationDay < 10) creationDay = `0${creationDay}`;
@@ -38,8 +89,6 @@ const CreateForm = () => {
     created = `${creationDay}/${creationMonth}/${creationYear}`;
     until = `${paymentDay}/${paymentMonth}/${paymentYear}`;
     amount = +amount;
-
-    console.log(created, until, amount);
 
     axios
       .post("http://localhost:3001/posts", {
@@ -66,7 +115,7 @@ const CreateForm = () => {
                 name="created"
                 control={control}
                 defaultValue={new Date()}
-                rules={{ required: true }}
+                // rules={{ required: true }}
                 render={({ field }) => (
                   <DesktopDatePicker
                     {...field}
@@ -79,14 +128,17 @@ const CreateForm = () => {
                   />
                 )}
               />
-              {errors.created && <ErrorMessage text="Pick a date" />}
+              {/* {errors.created && <ErrorMessage text="Pick a date" />} */}
+              {validationErrors.noCreationDate && (
+                <ErrorMessage text="Pick a date" />
+              )}
             </Grid>
             <Grid item xs={12} sm={4}>
               <Controller
                 name="until"
                 control={control}
                 defaultValue={new Date()}
-                rules={{ required: true }}
+                // rules={{ required: true }}
                 render={({ field }) => (
                   <DesktopDatePicker
                     {...field}
@@ -99,14 +151,20 @@ const CreateForm = () => {
                   />
                 )}
               />
-              {errors.until && <ErrorMessage text="Pick a date" />}
+              {/* {errors.until && <ErrorMessage text="Pick a date" />} */}
+              {validationErrors.noPaymentDate && (
+                <ErrorMessage text="Pick a date" />
+              )}
+              {validationErrors.paymentDateBeforeCreationDate && (
+                <ErrorMessage text="Payment date cannot be before creation date" />
+              )}
             </Grid>
             <Grid item xs={12} sm={4}>
               <Controller
                 name="amount"
                 control={control}
                 defaultValue="0"
-                rules={{ required: true, min: 0.01 }}
+                // rules={{ required: true, min: 0.01 }}
                 render={({ field }) => (
                   <TextField
                     {...field}
@@ -118,7 +176,10 @@ const CreateForm = () => {
                   />
                 )}
               />
-              {errors.amount && <ErrorMessage text="Amount cannot be 0" />}
+              {/* {errors.amount && <ErrorMessage text="Amount cannot be 0" />} */}
+              {validationErrors.noAmount && (
+                <ErrorMessage text="Amount cannot be 0" />
+              )}
             </Grid>
             <Grid item xs={12} sm={12}>
               <Button
