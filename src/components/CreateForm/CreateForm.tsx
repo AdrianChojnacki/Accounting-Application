@@ -1,74 +1,83 @@
-import * as React from "react";
+import { useForm, Controller } from "react-hook-form";
 import { Box, Button, Grid, TextField } from "@mui/material";
+import { LocalizationProvider, DesktopDatePicker } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import CreateFormCSS from "./CreateForm.module.css";
 
+interface IFormInputs {
+  creationDate: Date | null;
+  paymentDate: Date | null;
+  input: number | null;
+}
+
 const CreateForm = () => {
-  const [creationDate, setCreationDate] = React.useState<Date | null>(
-    new Date(),
-  );
-  const [paymentDate, setPaymentDate] = React.useState<Date | null>(new Date());
-  const [amount, setAmount] = React.useState<number | null>(0);
+  const {
+    control,
+    handleSubmit,
+    // formState: { errors },
+  } = useForm<IFormInputs>();
 
-  const handleCreationDateChange = (newValue: Date | null) => {
-    setCreationDate(newValue);
-  };
-
-  const handlePaymentDateChange = (newValue: Date | null) => {
-    setPaymentDate(newValue);
-  };
-
-  const handleAmountChange = (event: any) => {
-    setAmount(event.target.value);
-  };
+  const onSubmit = (data: any) => console.log(data);
 
   return (
-    <form
-      action="/"
-      method="POST"
-      onSubmit={(e) => {
-        e.preventDefault();
-        alert("Submitted form!");
-      }}
-    >
+    <form action="/" method="POST" onSubmit={handleSubmit(onSubmit)}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2} rowSpacing={2}>
             <Grid item xs={12} sm={4}>
-              <DesktopDatePicker
-                label="Creation date"
-                inputFormat="MM/dd/yyyy"
-                disablePast
-                value={creationDate}
-                onChange={handleCreationDateChange}
-                renderInput={(params: any) => (
-                  <TextField className={CreateFormCSS.input} {...params} />
+              <Controller
+                name="creationDate"
+                control={control}
+                defaultValue={new Date()}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <DesktopDatePicker
+                    {...field}
+                    label="Creation date"
+                    inputFormat="MM/dd/yyyy"
+                    disablePast
+                    renderInput={(params) => (
+                      <TextField {...params} className={CreateFormCSS.input} />
+                    )}
+                  />
                 )}
               />
             </Grid>
             <Grid item xs={12} sm={4}>
-              <DesktopDatePicker
-                label="Payment date"
-                inputFormat="MM/dd/yyyy"
-                disablePast
-                value={paymentDate}
-                onChange={handlePaymentDateChange}
-                renderInput={(params: any) => (
-                  <TextField className={CreateFormCSS.input} {...params} />
+              <Controller
+                name="paymentDate"
+                control={control}
+                defaultValue={new Date()}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <DesktopDatePicker
+                    {...field}
+                    label="Payment date"
+                    inputFormat="MM/dd/yyyy"
+                    disablePast
+                    renderInput={(params) => (
+                      <TextField {...params} className={CreateFormCSS.input} />
+                    )}
+                  />
                 )}
               />
             </Grid>
             <Grid item xs={12} sm={4}>
-              <TextField
-                label="Amount"
-                type="number"
-                variant="outlined"
-                InputProps={{ inputProps: { min: 0 } }}
-                value={amount}
-                onChange={handleAmountChange}
-                className={CreateFormCSS.input}
+              <Controller
+                name="input"
+                control={control}
+                defaultValue={0}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Amount"
+                    type="number"
+                    variant="outlined"
+                    InputProps={{ inputProps: { min: 0 } }}
+                    className={CreateFormCSS.input}
+                  />
+                )}
               />
             </Grid>
             <Grid item xs={12} sm={12}>
