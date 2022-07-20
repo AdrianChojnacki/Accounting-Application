@@ -14,7 +14,6 @@ export default function Invoice() {
       .get(`http://localhost:3001/posts/${id}`)
       .then((res) => {
         setInvoiceData(res.data);
-        console.log(invoiceData);
       })
       .catch((err) => {
         console.log(err);
