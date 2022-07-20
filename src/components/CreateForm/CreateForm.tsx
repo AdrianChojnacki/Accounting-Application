@@ -14,14 +14,14 @@ interface IFormErrors {
   noAmount: boolean;
 }
 
-// interface IFormSuccess {
-//   success: boolean;
-// }
-
 interface IFormInputs {
   created: Date | null;
   until: Date | null;
   amount: string | null;
+}
+
+interface IFormValidation {
+  (created: object, until: object, amount: string): boolean;
 }
 
 const CreateForm = () => {
@@ -31,11 +31,11 @@ const CreateForm = () => {
     paymentDateBeforeCreationDate: false,
     noAmount: false,
   });
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState<boolean>(false);
 
   const { control, handleSubmit } = useForm<IFormInputs>();
 
-  const formValidation = (created: object, until: object, amount: string) => {
+  const formValidation: IFormValidation = (created, until, amount) => {
     let noCreationDate = false;
     let noPaymentDate = false;
     let paymentDateBeforeCreationDate = false;
