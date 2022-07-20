@@ -7,8 +7,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import { BiEdit, BiShow } from "react-icons/bi";
-import { DeleteButton } from "..";
+import { DeleteButton, EditButton, ShowButton } from "..";
 import InvoicesTableCSS from "./InvoicesTable.module.css";
 import { IInvoicesTableProps } from "./InvoicesTable.types";
 
@@ -23,8 +22,8 @@ const InvoicesTable = ({ invoices, render }: IInvoicesTableProps) => {
       <TableCell align="right">{invoice.until}</TableCell>
       <TableCell align="right">{invoice.amount}</TableCell>
       <TableCell align="right">
-        <BiShow />
-        <BiEdit />
+        <ShowButton id={invoice.id} />
+        <EditButton id={invoice.id} />
         <DeleteButton id={invoice.id} />
       </TableCell>
     </TableRow>

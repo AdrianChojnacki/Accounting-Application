@@ -9,4 +9,6 @@ export * from "./SuccessMessage";
 export * from "./DatePicker";
 export * from "./InputField";
 export * from "./SubmitButton";
+export * from "./ShowButton";
+export * from "./EditButton";
 export * from "./DeleteButton";
