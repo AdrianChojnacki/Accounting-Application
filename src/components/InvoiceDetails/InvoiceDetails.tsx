@@ -1,11 +1,4 @@
-import React from "react";
-
-interface IInvoiceDataProps {
-  id: number;
-  created: string;
-  until: string;
-  amount: number;
-}
+import { IInvoiceDataProps } from "./InvoiceDetails.types";
 
 const InvoiceDetails = ({
   invoiceData,
