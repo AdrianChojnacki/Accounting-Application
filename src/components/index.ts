@@ -5,3 +5,4 @@ export * from "./PageContent";
 export * from "./InvoicesTable";
 export * from "./CreateForm";
 export * from "./ErrorMessage";
+export * from "./SuccessMessage";

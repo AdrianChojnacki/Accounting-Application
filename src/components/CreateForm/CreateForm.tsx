@@ -4,31 +4,34 @@ import axios from "axios";
 import { Box, Button, Grid, TextField } from "@mui/material";
 import { LocalizationProvider, DesktopDatePicker } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { ErrorMessage } from "..";
+import { ErrorMessage, SuccessMessage } from "..";
 import CreateFormCSS from "./CreateForm.module.css";
 
-interface IFormValidationErrors {
+interface IFormErrors {
   noCreationDate: boolean;
   noPaymentDate: boolean;
   paymentDateBeforeCreationDate: boolean;
   noAmount: boolean;
 }
 
+// interface IFormSuccess {
+//   success: boolean;
+// }
+
 interface IFormInputs {
-  id: number | null;
   created: Date | null;
   until: Date | null;
   amount: string | null;
 }
 
 const CreateForm = () => {
-  const [validationErrors, setValidationErrors] =
-    useState<IFormValidationErrors>({
-      noCreationDate: false,
-      noPaymentDate: false,
-      paymentDateBeforeCreationDate: false,
-      noAmount: false,
-    });
+  const [errors, setErrors] = useState<IFormErrors>({
+    noCreationDate: false,
+    noPaymentDate: false,
+    paymentDateBeforeCreationDate: false,
+    noAmount: false,
+  });
+  const [success, setSuccess] = useState(false);
 
   const { control, handleSubmit } = useForm<IFormInputs>();
 
@@ -44,7 +47,7 @@ const CreateForm = () => {
       paymentDateBeforeCreationDate = true;
     if (amount === "0") noAmount = true;
 
-    setValidationErrors({
+    setErrors({
       noCreationDate,
       noPaymentDate,
       paymentDateBeforeCreationDate,
@@ -95,6 +98,9 @@ const CreateForm = () => {
       .catch((err) => {
         console.log(err);
       });
+
+    setSuccess(true);
+    setTimeout(() => setSuccess(false), 3000);
   };
 
   return (
@@ -119,9 +125,7 @@ const CreateForm = () => {
                   />
                 )}
               />
-              {validationErrors.noCreationDate && (
-                <ErrorMessage text="Pick a date" />
-              )}
+              {errors.noCreationDate && <ErrorMessage text="Pick a date" />}
             </Grid>
             <Grid item xs={12} sm={4}>
               <Controller
@@ -140,10 +144,8 @@ const CreateForm = () => {
                   />
                 )}
               />
-              {validationErrors.noPaymentDate && (
-                <ErrorMessage text="Pick a date" />
-              )}
-              {validationErrors.paymentDateBeforeCreationDate && (
+              {errors.noPaymentDate && <ErrorMessage text="Pick a date" />}
+              {errors.paymentDateBeforeCreationDate && (
                 <ErrorMessage text="Payment date cannot be before creation date" />
               )}
             </Grid>
@@ -163,9 +165,7 @@ const CreateForm = () => {
                   />
                 )}
               />
-              {validationErrors.noAmount && (
-                <ErrorMessage text="Amount cannot be 0" />
-              )}
+              {errors.noAmount && <ErrorMessage text="Amount cannot be 0" />}
             </Grid>
             <Grid item xs={12} sm={12}>
               <Button
@@ -175,6 +175,9 @@ const CreateForm = () => {
               >
                 Submit
               </Button>
+            </Grid>
+            <Grid item xs={12} sm={12}>
+              {success && <SuccessMessage text="Invoice created" />}
             </Grid>
           </Grid>
         </Box>
