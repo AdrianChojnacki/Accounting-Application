@@ -23,9 +23,6 @@ const InvoicesTable = ({ invoices, render }: IInvoicesTableProps) => {
     </TableRow>
   ));
 
-  const company = "Księgowość Kogucik";
-  const year = new Date().getFullYear();
-
   return (
     <>
       <TableContainer component={Paper}>
@@ -41,7 +38,7 @@ const InvoicesTable = ({ invoices, render }: IInvoicesTableProps) => {
           <TableBody>{invoicesList}</TableBody>
         </Table>
       </TableContainer>
-      <p className={InvoicesTableCSS.footer}>{render(company, year)}</p>
+      <p className={InvoicesTableCSS.footer}>{render()}</p>
     </>
   );
 };
