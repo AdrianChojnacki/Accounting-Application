@@ -7,17 +7,18 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { ErrorMessage } from "..";
 import CreateFormCSS from "./CreateForm.module.css";
 
-interface IFormInputs {
-  created: Date | null;
-  until: Date | null;
-  amount: string | null;
-}
-
 interface IFormValidationErrors {
   noCreationDate: boolean;
   noPaymentDate: boolean;
   paymentDateBeforeCreationDate: boolean;
   noAmount: boolean;
+}
+
+interface IFormInputs {
+  id: number | null;
+  created: Date | null;
+  until: Date | null;
+  amount: string | null;
 }
 
 const CreateForm = () => {
@@ -28,6 +29,7 @@ const CreateForm = () => {
       paymentDateBeforeCreationDate: false,
       noAmount: false,
     });
+
   const { control, handleSubmit } = useForm<IFormInputs>();
 
   const formValidation = (created: object, until: object, amount: string) => {
@@ -80,14 +82,12 @@ const CreateForm = () => {
     if (paymentMonth < 10) paymentMonth = `0${paymentMonth}`;
     const paymentYear = until.getFullYear();
 
-    const id = Math.floor(1000000 + Math.random() * 9000000);
     created = `${creationDay}/${creationMonth}/${creationYear}`;
     until = `${paymentDay}/${paymentMonth}/${paymentYear}`;
     amount = +amount;
 
     axios
       .post("http://localhost:3001/posts", {
-        id,
         created,
         until,
         amount,
