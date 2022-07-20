@@ -1,12 +1,25 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { withPageWrapper, PageContent } from "../components";
+import axios from "axios";
+import { withPageWrapper, InvoiceDetails } from "../components";
 
-const PageContentWithPageWrapper = withPageWrapper(PageContent);
+const InvoiceDetailsWithPageWrapper = withPageWrapper(InvoiceDetails);
 
 export default function Invoice() {
+  const [invoiceData, setInvoiceData] = useState({});
   const { id } = useParams();
 
-  const content = `Invoice ${id}`;
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/posts/${id}`)
+      .then((res) => {
+        setInvoiceData(res.data);
+        console.log(invoiceData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-  return <PageContentWithPageWrapper content={content} />;
+  return <InvoiceDetailsWithPageWrapper invoiceData={invoiceData} />;
 }

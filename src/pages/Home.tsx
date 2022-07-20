@@ -5,13 +5,13 @@ import { withPageWrapper, InvoicesTable } from "../components";
 const InvoicesTableWithPageWrapper = withPageWrapper(InvoicesTable);
 
 export default function Home() {
-  const [posts, setPosts] = useState([]);
+  const [invoices, setInvoices] = useState([]);
 
   useEffect(() => {
     axios
       .get("http://localhost:3001/posts")
       .then((res) => {
-        setPosts(res.data);
+        setInvoices(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -20,7 +20,7 @@ export default function Home() {
 
   return (
     <InvoicesTableWithPageWrapper
-      invoices={posts}
+      invoices={invoices}
       render={() => `Księgowość Kogucik © ${new Date().getFullYear()}`}
     />
   );

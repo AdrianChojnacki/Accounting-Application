@@ -7,7 +7,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import { DeleteButton, EditButton, ShowButton } from "..";
+import { DeleteButton, EditButton, DetailsButton } from "..";
 import InvoicesTableCSS from "./InvoicesTable.module.css";
 import { IInvoicesTableProps } from "./InvoicesTable.types";
 
@@ -22,7 +22,7 @@ const InvoicesTable = ({ invoices, render }: IInvoicesTableProps) => {
       <TableCell align="right">{invoice.until}</TableCell>
       <TableCell align="right">{invoice.amount}</TableCell>
       <TableCell align="right">
-        <ShowButton id={invoice.id} />
+        <DetailsButton id={invoice.id} />
         <EditButton id={invoice.id} />
         <DeleteButton id={invoice.id} />
       </TableCell>
