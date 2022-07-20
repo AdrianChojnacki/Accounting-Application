@@ -7,6 +7,8 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
+import { BiEdit, BiShow } from "react-icons/bi";
+import { DeleteButton } from "..";
 import InvoicesTableCSS from "./InvoicesTable.module.css";
 import { IInvoicesTableProps } from "./InvoicesTable.types";
 
@@ -20,6 +22,11 @@ const InvoicesTable = ({ invoices, render }: IInvoicesTableProps) => {
       <TableCell align="right">{invoice.created}</TableCell>
       <TableCell align="right">{invoice.until}</TableCell>
       <TableCell align="right">{invoice.amount}</TableCell>
+      <TableCell align="right">
+        <BiShow />
+        <BiEdit />
+        <DeleteButton id={invoice.id} />
+      </TableCell>
     </TableRow>
   ));
 
@@ -33,6 +40,7 @@ const InvoicesTable = ({ invoices, render }: IInvoicesTableProps) => {
               <TableCell align="right">Created</TableCell>
               <TableCell align="right">Payment until</TableCell>
               <TableCell align="right">Amount</TableCell>
+              <TableCell align="right">Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>{invoicesList}</TableBody>

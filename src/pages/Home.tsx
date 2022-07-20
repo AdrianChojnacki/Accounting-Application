@@ -16,7 +16,7 @@ export default function Home() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  });
 
   return (
     <InvoicesTableWithPageWrapper
