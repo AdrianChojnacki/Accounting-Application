@@ -1,5 +1,6 @@
 import axios from "axios";
 import { AiFillDelete } from "react-icons/ai";
+import DeleteButtonCSS from "./DeleteButton.module.css";
 
 const DeleteButton = ({ id }: { id: number }) => {
   const handleClick = () => {
@@ -9,8 +10,8 @@ const DeleteButton = ({ id }: { id: number }) => {
   };
 
   return (
-    <span onClick={handleClick}>
-      <AiFillDelete />
+    <span onClick={handleClick} className={DeleteButtonCSS.btn}>
+      <AiFillDelete className={DeleteButtonCSS.icon} />
     </span>
   );
 };
