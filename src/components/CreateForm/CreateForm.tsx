@@ -21,7 +21,6 @@ const CreateForm = () => {
     noAmount: false,
   });
   const [success, setSuccess] = useState<boolean>(false);
-
   const { control, handleSubmit } = useForm<IFormInputs>();
 
   const formValidation: IFormValidation = (created, until, amount) => {
