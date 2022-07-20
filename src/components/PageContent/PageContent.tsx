@@ -1,6 +1,4 @@
-import { IPageContentProps } from "./PageContent.types";
-
-const PageContent = ({ content }: IPageContentProps) => {
+const PageContent = ({ content }: { content: any }) => {
   return <section>{content}</section>;
 };
 

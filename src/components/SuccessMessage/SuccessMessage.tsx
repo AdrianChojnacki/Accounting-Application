@@ -1,7 +1,6 @@
 import SuccessMessageCSS from "./SuccessMessage.module.css";
-import { ISuccessMessageProps } from "./SuccessMessage.types";
 
-const SuccessMessage = ({ text }: ISuccessMessageProps) => {
+const SuccessMessage = ({ text }: { text: string }) => {
   return <p className={SuccessMessageCSS.text}>{text}</p>;
 };
 

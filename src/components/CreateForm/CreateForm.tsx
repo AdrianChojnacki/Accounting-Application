@@ -1,28 +1,17 @@
 import { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import axios from "axios";
-import { Box, Button, Grid, TextField } from "@mui/material";
-import { LocalizationProvider, DesktopDatePicker } from "@mui/x-date-pickers";
+import { Box, Grid } from "@mui/material";
+import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { ErrorMessage, SuccessMessage } from "..";
-import CreateFormCSS from "./CreateForm.module.css";
-
-interface IFormErrors {
-  noCreationDate: boolean;
-  noPaymentDate: boolean;
-  paymentDateBeforeCreationDate: boolean;
-  noAmount: boolean;
-}
-
-interface IFormInputs {
-  created: Date | null;
-  until: Date | null;
-  amount: string | null;
-}
-
-interface IFormValidation {
-  (created: object, until: object, amount: string): boolean;
-}
+import {
+  DatePicker,
+  ErrorMessage,
+  InputField,
+  SubmitButton,
+  SuccessMessage,
+} from "..";
+import { IFormErrors, IFormInputs, IFormValidation } from "./CreateForm.types";
 
 const CreateForm = () => {
   const [errors, setErrors] = useState<IFormErrors>({
@@ -109,72 +98,26 @@ const CreateForm = () => {
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2} rowSpacing={4}>
             <Grid item xs={12} sm={4}>
-              <Controller
+              <DatePicker
                 name="created"
                 control={control}
-                defaultValue={new Date()}
-                render={({ field }) => (
-                  <DesktopDatePicker
-                    {...field}
-                    label="Creation date"
-                    inputFormat="dd/MM/yyyy"
-                    disablePast
-                    renderInput={(params) => (
-                      <TextField {...params} className={CreateFormCSS.input} />
-                    )}
-                  />
-                )}
+                label="Creation date"
               />
               {errors.noCreationDate && <ErrorMessage text="Pick a date" />}
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Controller
-                name="until"
-                control={control}
-                defaultValue={new Date()}
-                render={({ field }) => (
-                  <DesktopDatePicker
-                    {...field}
-                    label="Payment date"
-                    inputFormat="dd/MM/yyyy"
-                    disablePast
-                    renderInput={(params) => (
-                      <TextField {...params} className={CreateFormCSS.input} />
-                    )}
-                  />
-                )}
-              />
+              <DatePicker name="until" control={control} label="Payment date" />
               {errors.noPaymentDate && <ErrorMessage text="Pick a date" />}
               {errors.paymentDateBeforeCreationDate && (
                 <ErrorMessage text="Payment date cannot be before creation date" />
               )}
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Controller
-                name="amount"
-                control={control}
-                defaultValue="0"
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    label="Amount"
-                    type="number"
-                    variant="outlined"
-                    InputProps={{ inputProps: { min: 0, step: 0.01 } }}
-                    className={CreateFormCSS.input}
-                  />
-                )}
-              />
+              <InputField name="amount" control={control} label="Amount" />
               {errors.noAmount && <ErrorMessage text="Amount cannot be 0" />}
             </Grid>
             <Grid item xs={12} sm={12}>
-              <Button
-                type="submit"
-                variant="contained"
-                className={CreateFormCSS.btn}
-              >
-                Submit
-              </Button>
+              <SubmitButton text="Submit" />
             </Grid>
             <Grid item xs={12} sm={12}>
               {success && <SuccessMessage text="Invoice created" />}

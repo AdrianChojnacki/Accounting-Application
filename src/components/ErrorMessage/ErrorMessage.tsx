@@ -1,7 +1,6 @@
 import ErrorMessageCSS from "./ErrorMessage.module.css";
-import { IErrorMessageProps } from "./ErrorMessage.types";
 
-const ErrorMessage = ({ text }: IErrorMessageProps) => {
+const ErrorMessage = ({ text }: { text: string }) => {
   return <p className={ErrorMessageCSS.text}>{text}</p>;
 };
 
