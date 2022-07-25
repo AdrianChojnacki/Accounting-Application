@@ -25,5 +25,7 @@ export default function Home() {
   const render: IInvoicesTableRender = (company, year) =>
     `${company} © ${year}`;
 
-  return <InvoicesTableWithPageWrapper invoices={posts} render={render} />;
+  return (
+    <InvoicesTableWithPageWrapper invoices={posts} renderCopyright={render} />
+  );
 }

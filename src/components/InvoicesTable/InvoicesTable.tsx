@@ -10,7 +10,7 @@ import {
 import InvoicesTableCSS from "./InvoicesTable.module.css";
 import { IInvoicesTableProps } from "./InvoicesTable.types";
 
-const InvoicesTable = ({ invoices, render }: IInvoicesTableProps) => {
+const InvoicesTable = ({ invoices, renderCopyright }: IInvoicesTableProps) => {
   const invoicesList = invoices.map((invoice) => (
     <TableRow
       key={invoice.id}
@@ -41,7 +41,9 @@ const InvoicesTable = ({ invoices, render }: IInvoicesTableProps) => {
           <TableBody>{invoicesList}</TableBody>
         </Table>
       </TableContainer>
-      <p className={InvoicesTableCSS.footer}>{render(company, year)}</p>
+      <p className={InvoicesTableCSS.footer}>
+        {renderCopyright(company, year)}
+      </p>
     </>
   );
 };
