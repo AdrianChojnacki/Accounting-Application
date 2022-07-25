@@ -1,10 +1,10 @@
-import React from "react";
+import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-const LazyHome = React.lazy(() => import("./pages/Home"));
-const LazyCreate = React.lazy(() => import("./pages/Create"));
-const LazyInvoice = React.lazy(() => import("./pages/Invoice"));
-const LazyPageNotFound = React.lazy(() => import("./pages/PageNotFound"));
+const Home = lazy(() => import("./pages/Home"));
+const Create = lazy(() => import("./pages/Create"));
+const Invoice = lazy(() => import("./pages/Invoice"));
+const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 
 function App() {
   return (
@@ -13,33 +13,33 @@ function App() {
         <Route
           path="/"
           element={
-            <React.Suspense fallback="Loading...">
-              <LazyHome />
-            </React.Suspense>
+            <Suspense fallback="Loading...">
+              <Home />
+            </Suspense>
           }
         />
         <Route
           path="/create"
           element={
-            <React.Suspense fallback="Loading...">
-              <LazyCreate />
-            </React.Suspense>
+            <Suspense fallback="Loading...">
+              <Create />
+            </Suspense>
           }
         />
         <Route
           path="/invoice/:id"
           element={
-            <React.Suspense fallback="Loading...">
-              <LazyInvoice />
-            </React.Suspense>
+            <Suspense fallback="Loading...">
+              <Invoice />
+            </Suspense>
           }
         />
         <Route
           path="*"
           element={
-            <React.Suspense fallback="Loading...">
-              <LazyPageNotFound />
-            </React.Suspense>
+            <Suspense fallback="Loading...">
+              <PageNotFound />
+            </Suspense>
           }
         />
       </Routes>
