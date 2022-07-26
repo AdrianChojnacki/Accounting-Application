@@ -9,7 +9,7 @@ import {
 const InvoicesTableWithPageWrapper = withPageWrapper(InvoicesTable);
 
 export default function Home() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<object[]>([]);
 
   useEffect(() => {
     axios
