@@ -112,7 +112,12 @@ const CreateForm = () => {
               )}
             </Grid>
             <Grid item xs={12} sm={4}>
-              <InputField name="amount" control={control} label="Amount" />
+              <InputField
+                name="amount"
+                control={control}
+                label="Amount"
+                defaultValue={0}
+              />
               {errors.noAmount && <ErrorMessage text="Amount cannot be 0" />}
             </Grid>
             <Grid item xs={12} sm={12}>

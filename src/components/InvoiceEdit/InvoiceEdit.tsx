@@ -142,7 +142,12 @@ const InvoiceEdit = ({ invoiceData }: { invoiceData: IInvoiceEditProps }) => {
               </TableRow>
               <TableRow>
                 <TableCell colSpan={2} align="right">
-                  <InputField name="amount" control={control} label="Amount" />
+                  <InputField
+                    name="amount"
+                    control={control}
+                    label="Amount"
+                    defaultValue={invoiceData.amount}
+                  />
                   {errors.noAmount && (
                     <ErrorMessage text="Amount cannot be 0" />
                   )}
