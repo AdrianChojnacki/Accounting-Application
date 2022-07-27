@@ -7,12 +7,12 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import { IInvoiceDataProps } from "./InvoiceDetails.types";
+import { IInvoiceDetailsProps } from "./InvoiceDetails.types";
 
 const InvoiceDetails = ({
   invoiceData,
 }: {
-  invoiceData: IInvoiceDataProps;
+  invoiceData: IInvoiceDetailsProps;
 }) => {
   return (
     <TableContainer component={Paper}>

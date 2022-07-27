@@ -1,7 +1,16 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { Box, Grid } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  Paper,
+} from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import {
@@ -11,19 +20,24 @@ import {
   SubmitButton,
   SuccessMessage,
 } from "..";
-import { IFormErrors, IFormInputs, IFormValidation } from "./CreateForm.types";
+import {
+  IInvoiceEditProps,
+  IFormErrors2,
+  IFormInputs2,
+  IFormValidation2,
+} from "./InvoiceEdit.types";
 
-const CreateForm = () => {
-  const [errors, setErrors] = useState<IFormErrors>({
+const InvoiceEdit = ({ invoiceData }: { invoiceData: IInvoiceEditProps }) => {
+  const [errors, setErrors] = useState<IFormErrors2>({
     noCreationDate: false,
     noPaymentDate: false,
     paymentDateBeforeCreationDate: false,
     noAmount: false,
   });
   const [success, setSuccess] = useState<boolean>(false);
-  const { control, handleSubmit } = useForm<IFormInputs>();
+  const { control, handleSubmit } = useForm<IFormInputs2>();
 
-  const formValidation: IFormValidation = (created, until, amount) => {
+  const formValidation: IFormValidation2 = (created, until, amount) => {
     let noCreationDate = false;
     let noPaymentDate = false;
     let paymentDateBeforeCreationDate = false;
@@ -94,40 +108,56 @@ const CreateForm = () => {
   return (
     <form action="/" method="POST" onSubmit={handleSubmit(onSubmit)}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={2} rowSpacing={4}>
-            <Grid item xs={12} sm={4}>
-              <DatePicker
-                name="created"
-                control={control}
-                label="Creation date"
-              />
-              {errors.noCreationDate && <ErrorMessage text="Pick a date" />}
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <DatePicker name="until" control={control} label="Payment date" />
-              {errors.noPaymentDate && <ErrorMessage text="Pick a date" />}
-              {errors.paymentDateBeforeCreationDate && (
-                <ErrorMessage text="Payment date cannot be before creation date" />
-              )}
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <InputField name="amount" control={control} label="Amount" />
-              {errors.noAmount && <ErrorMessage text="Amount cannot be 0" />}
-            </Grid>
-            <Grid item xs={12} sm={12}>
-              <Grid container justifyContent="flex-end">
-                <SubmitButton text="Submit" />
-              </Grid>
-            </Grid>
-            <Grid item xs={12} sm={12}>
-              {success && <SuccessMessage text="Invoice created" />}
-            </Grid>
-          </Grid>
-        </Box>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableBody>
+              <TableRow>
+                <TableCell colSpan={2}>
+                  <Box fontWeight="bold" display="inline">
+                    ID:
+                  </Box>
+                  {` ${invoiceData.id}`}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>
+                  <DatePicker
+                    name="created"
+                    control={control}
+                    label="Creation date"
+                  />
+                  {errors.noCreationDate && <ErrorMessage text="Pick a date" />}
+                </TableCell>
+                <TableCell>
+                  <DatePicker
+                    name="until"
+                    control={control}
+                    label="Payment date"
+                  />
+                  {errors.noPaymentDate && <ErrorMessage text="Pick a date" />}
+                  {errors.paymentDateBeforeCreationDate && (
+                    <ErrorMessage text="Payment date cannot be before creation date" />
+                  )}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell colSpan={2} align="right">
+                  <InputField name="amount" control={control} label="Amount" />
+                  {errors.noAmount && (
+                    <ErrorMessage text="Amount cannot be 0" />
+                  )}
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <Grid container justifyContent="flex-end">
+          <SubmitButton text="Save" />
+        </Grid>
+        {success && <SuccessMessage text="Invoice created" />}
       </LocalizationProvider>
     </form>
   );
 };
 
-export { CreateForm };
+export { InvoiceEdit };

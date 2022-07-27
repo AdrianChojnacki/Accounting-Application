@@ -13,3 +13,4 @@ export * from "./DetailsButton";
 export * from "./EditButton";
 export * from "./DeleteButton";
 export * from "./InvoiceDetails";
+export * from "./InvoiceEdit";
