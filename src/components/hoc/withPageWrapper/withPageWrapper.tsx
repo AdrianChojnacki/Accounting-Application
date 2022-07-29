@@ -1,6 +1,5 @@
 import { Header } from "../..";
 import PageWrapperCSS from "./withPageWrapper.module.css";
-// import { IWithPageWrapperProps } from "./withPageWrapper.types";
 
 const withPageWrapper =
   (Component: any) =>
