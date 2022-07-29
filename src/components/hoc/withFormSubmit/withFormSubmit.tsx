@@ -78,17 +78,34 @@ const withFormSubmit =
 
       amount = +amount;
 
-      axios
-        .post("http://localhost:3001/posts", {
-          created,
-          createdRaw,
-          until,
-          untilRaw,
-          amount,
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      if (passThroughProps.invoiceData) {
+        axios
+          .patch(
+            `http://localhost:3001/posts/${passThroughProps.invoiceData.id}`,
+            {
+              created,
+              createdRaw,
+              until,
+              untilRaw,
+              amount,
+            },
+          )
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        axios
+          .post("http://localhost:3001/posts", {
+            created,
+            createdRaw,
+            until,
+            untilRaw,
+            amount,
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
 
       setSuccess(true);
       setTimeout(() => setSuccess(false), 3000);

@@ -1,9 +1,12 @@
 import { ReactElement, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { withPageWrapper, InvoiceEdit } from "../components";
+import { withFormSubmit, withPageWrapper, InvoiceEdit } from "../components";
 
-const InvoiceEditWithPageWrapper = withPageWrapper(InvoiceEdit);
+const InvoiceEditWithFormSubmit = withFormSubmit(InvoiceEdit);
+const InvoiceEditWithFormSubmitWithPageWrapper = withPageWrapper(
+  InvoiceEditWithFormSubmit,
+);
 
 export default function Edit() {
   const [content, setContent] = useState<ReactElement>();
@@ -13,7 +16,9 @@ export default function Edit() {
     axios
       .get(`http://localhost:3001/posts/${id}`)
       .then((res) => {
-        setContent(<InvoiceEditWithPageWrapper invoiceData={res.data} />);
+        setContent(
+          <InvoiceEditWithFormSubmitWithPageWrapper invoiceData={res.data} />,
+        );
       })
       .catch((err) => {
         console.log(err);
