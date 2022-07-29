@@ -12,5 +12,5 @@ export interface IFormInputs {
 }
 
 export interface IFormValidation {
-  (created: object, until: object, amount: string): boolean;
+  (created: object, until: object, amount: number): boolean;
 }

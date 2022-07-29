@@ -31,7 +31,7 @@ const withFormSubmit =
       if (!until) noPaymentDate = true;
       if (created && until && created > until)
         paymentDateBeforeCreationDate = true;
-      if (amount === "0") noAmount = true;
+      if (amount === 0) noAmount = true;
 
       setErrors({
         noCreationDate,
