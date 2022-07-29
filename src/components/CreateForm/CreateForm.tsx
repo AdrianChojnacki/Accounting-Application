@@ -61,26 +61,31 @@ const CreateForm = () => {
 
     if (!isFormValid) return;
 
+    const createdRaw = created.getTime();
+    const untilRaw = until.getTime();
+
     let creationDay = created.getDate();
     if (creationDay < 10) creationDay = `0${creationDay}`;
     let creationMonth = created.getMonth() + 1;
     if (creationMonth < 10) creationMonth = `0${creationMonth}`;
     const creationYear = created.getFullYear();
+    created = `${creationDay}/${creationMonth}/${creationYear}`;
 
     let paymentDay = until.getDate();
     if (paymentDay < 10) paymentDay = `0${paymentDay}`;
     let paymentMonth = until.getMonth() + 1;
     if (paymentMonth < 10) paymentMonth = `0${paymentMonth}`;
     const paymentYear = until.getFullYear();
-
-    created = `${creationDay}/${creationMonth}/${creationYear}`;
     until = `${paymentDay}/${paymentMonth}/${paymentYear}`;
+
     amount = +amount;
 
     axios
       .post("http://localhost:3001/posts", {
         created,
+        createdRaw,
         until,
+        untilRaw,
         amount,
       })
       .catch((err) => {

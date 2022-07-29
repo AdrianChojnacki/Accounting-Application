@@ -125,7 +125,7 @@ const InvoiceEdit = ({ invoiceData }: { invoiceData: IInvoiceEditProps }) => {
                     name="created"
                     control={control}
                     label="Creation date"
-                    defaultDate={new Date(2022, 0, 12)}
+                    defaultDate={new Date(invoiceData.createdRaw)}
                   />
                   {errors.noCreationDate && <ErrorMessage text="Pick a date" />}
                 </TableCell>
@@ -134,7 +134,7 @@ const InvoiceEdit = ({ invoiceData }: { invoiceData: IInvoiceEditProps }) => {
                     name="until"
                     control={control}
                     label="Payment date"
-                    defaultDate={new Date(2022, 1, 12)}
+                    defaultDate={new Date(invoiceData.untilRaw)}
                   />
                   {errors.noPaymentDate && <ErrorMessage text="Pick a date" />}
                   {errors.paymentDateBeforeCreationDate && (

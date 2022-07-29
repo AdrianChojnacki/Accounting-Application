@@ -1,7 +1,9 @@
 export interface IInvoiceEditProps {
   id: number;
   created: string;
+  createdRaw: number;
   until: string;
+  untilRaw: number;
   amount: number;
 }
 
