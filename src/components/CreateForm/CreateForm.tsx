@@ -101,11 +101,19 @@ const CreateForm = () => {
                 name="created"
                 control={control}
                 label="Creation date"
+                defaultDate={new Date()}
+                disabledPast
               />
               {errors.noCreationDate && <ErrorMessage text="Pick a date" />}
             </Grid>
             <Grid item xs={12} sm={4}>
-              <DatePicker name="until" control={control} label="Payment date" />
+              <DatePicker
+                name="until"
+                control={control}
+                label="Payment date"
+                defaultDate={new Date()}
+                disabledPast
+              />
               {errors.noPaymentDate && <ErrorMessage text="Pick a date" />}
               {errors.paymentDateBeforeCreationDate && (
                 <ErrorMessage text="Payment date cannot be before creation date" />
