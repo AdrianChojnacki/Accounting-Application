@@ -15,7 +15,7 @@ import {
   SubmitButton,
   SuccessMessage,
 } from "..";
-import { IInvoiceEditProps } from "./InvoiceEdit.types";
+import { IInvoiceEditProps } from ".";
 
 const InvoiceEdit = ({
   errors,

@@ -1,4 +1,4 @@
-export interface ICreateFormProps {
+export interface IInvoiceCreateProps {
   errors: {
     noCreationDate: boolean;
     noPaymentDate: boolean;

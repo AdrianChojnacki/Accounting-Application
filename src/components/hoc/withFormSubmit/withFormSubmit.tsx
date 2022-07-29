@@ -3,11 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import {
-  IFormErrors,
-  IFormInputs,
-  IFormValidation,
-} from "./withFormSubmit.types";
+import { IFormErrors, IFormInputs, IFormValidation } from ".";
 
 const withFormSubmit =
   (Component: any) =>

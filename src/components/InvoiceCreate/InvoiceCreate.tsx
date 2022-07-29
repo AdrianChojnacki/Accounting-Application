@@ -6,9 +6,9 @@ import {
   SubmitButton,
   SuccessMessage,
 } from "..";
-import { ICreateFormProps } from ".";
+import { IInvoiceCreateProps } from ".";
 
-const CreateForm = ({ errors, success, control }: ICreateFormProps) => {
+const InvoiceCreate = ({ errors, success, control }: IInvoiceCreateProps) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2} rowSpacing={4}>
@@ -57,4 +57,4 @@ const CreateForm = ({ errors, success, control }: ICreateFormProps) => {
   );
 };
 
-export { CreateForm };
+export { InvoiceCreate };

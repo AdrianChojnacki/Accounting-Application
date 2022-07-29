@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { DeleteButton, EditButton, DetailsButton } from "..";
 import InvoicesTableCSS from "./InvoicesTable.module.css";
-import { IInvoicesTableProps } from "./InvoicesTable.types";
+import { IInvoicesTableProps } from ".";
 
 const InvoicesTable = ({ invoices, render }: IInvoicesTableProps) => {
   const invoicesList = invoices.map((invoice) => (

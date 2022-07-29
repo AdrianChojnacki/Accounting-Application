@@ -1,6 +1,6 @@
-import { withFormSubmit, withPageWrapper, CreateForm } from "../components";
+import { withFormSubmit, withPageWrapper, InvoiceCreate } from "../components";
 
-const CreateFormWithFormSubmit = withFormSubmit(CreateForm);
+const CreateFormWithFormSubmit = withFormSubmit(InvoiceCreate);
 const CreateFormWithFormSubmitWithPageWrapper = withPageWrapper(
   CreateFormWithFormSubmit,
 );

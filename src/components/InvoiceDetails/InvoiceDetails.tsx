@@ -7,7 +7,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import { IInvoiceDetailsProps } from "./InvoiceDetails.types";
+import { IInvoiceDetailsProps } from ".";
 
 const InvoiceDetails = ({
   invoiceData,

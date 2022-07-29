@@ -1,7 +1,7 @@
 import { Controller } from "react-hook-form";
 import { TextField } from "@mui/material";
 import InputFieldCSS from "./InputField.module.css";
-import { IInputFieldProps } from "./InputField.types";
+import { IInputFieldProps } from ".";
 
 const InputField = ({
   name,
