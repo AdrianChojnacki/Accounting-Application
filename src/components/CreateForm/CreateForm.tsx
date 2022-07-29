@@ -133,12 +133,12 @@ const CreateForm = () => {
               />
               {errors.noAmount && <ErrorMessage text="Amount cannot be 0" />}
             </Grid>
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={12}>
               <Grid container justifyContent="flex-end">
                 <SubmitButton text="Submit" />
               </Grid>
             </Grid>
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={12}>
               {success && <SuccessMessage text="Invoice created" />}
             </Grid>
           </Grid>
