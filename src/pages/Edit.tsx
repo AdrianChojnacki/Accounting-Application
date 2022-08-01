@@ -8,7 +8,7 @@ const InvoiceEditWithFormSubmitWithPageWrapper = withPageWrapper(
   InvoiceEditWithFormSubmit,
 );
 
-export default function Edit() {
+const Edit = () => {
   const [content, setContent] = useState<ReactElement>();
   const { id } = useParams();
 
@@ -26,4 +26,6 @@ export default function Edit() {
   }, []);
 
   return <>{content}</>;
-}
+};
+
+export default Edit;

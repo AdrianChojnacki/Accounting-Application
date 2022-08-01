@@ -2,6 +2,8 @@ import { withPageWrapper, PageContent } from "../components";
 
 const PageContentWithPageWrapper = withPageWrapper(PageContent);
 
-export default function PageNotFound() {
+const PageNotFound = () => {
   return <PageContentWithPageWrapper content="PageNotFound" />;
-}
+};
+
+export default PageNotFound;

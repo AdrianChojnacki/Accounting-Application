@@ -4,7 +4,7 @@ import { withPageWrapper, InvoicesTable } from "../components";
 
 const InvoicesTableWithPageWrapper = withPageWrapper(InvoicesTable);
 
-export default function Home() {
+const Home = () => {
   const [invoices, setInvoices] = useState([]);
 
   useEffect(() => {
@@ -24,4 +24,6 @@ export default function Home() {
       render={() => `Księgowość Kogucik © ${new Date().getFullYear()}`}
     />
   );
-}
+};
+
+export default Home;

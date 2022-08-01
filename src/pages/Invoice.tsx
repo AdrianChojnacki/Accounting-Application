@@ -5,7 +5,7 @@ import { withPageWrapper, InvoiceDetails } from "../components";
 
 const InvoiceDetailsWithPageWrapper = withPageWrapper(InvoiceDetails);
 
-export default function Invoice() {
+const Invoice = () => {
   const [invoiceData, setInvoiceData] = useState({});
   const { id } = useParams();
 
@@ -21,4 +21,6 @@ export default function Invoice() {
   }, []);
 
   return <InvoiceDetailsWithPageWrapper invoiceData={invoiceData} />;
-}
+};
+
+export default Invoice;

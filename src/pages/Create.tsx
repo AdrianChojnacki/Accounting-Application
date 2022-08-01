@@ -5,6 +5,8 @@ const CreateFormWithFormSubmitWithPageWrapper = withPageWrapper(
   CreateFormWithFormSubmit,
 );
 
-export default function Create() {
+const Create = () => {
   return <CreateFormWithFormSubmitWithPageWrapper />;
-}
+};
+
+export default Create;
