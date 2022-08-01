@@ -46,7 +46,7 @@ const InvoiceCreate = ({ errors, success, control }: IInvoiceCreateProps) => {
         </Grid>
         <Grid item xs={12}>
           <Grid container justifyContent="flex-end">
-            <SubmitButton text="Submit" />
+            <SubmitButton text="Create" />
           </Grid>
         </Grid>
         <Grid item xs={12}>
