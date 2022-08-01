@@ -1,10 +1,11 @@
-import { ReactNode, createContext, useState } from "react";
+import { createContext, useState } from "react";
+import { IListReloadProviderProps } from ".";
 
 const ListReloadContext = createContext(true);
 const ListReloadSetFalseContext = createContext(() => {});
 const ListReloadSetTrueContext = createContext(() => {});
 
-const ListReloadProvider = ({ children }: { children: ReactNode }) => {
+const ListReloadProvider = ({ children }: IListReloadProviderProps) => {
   const [reload, setReload] = useState<boolean>(true);
 
   const setReloadFalse = () => setReload(false);
