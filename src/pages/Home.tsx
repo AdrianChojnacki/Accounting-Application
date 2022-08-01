@@ -8,7 +8,7 @@ import {
 
 const InvoicesTableWithPageWrapper = withPageWrapper(InvoicesTable);
 
-export default function Home() {
+const Home = () => {
   const [posts, setPosts] = useState<object[]>([]);
 
   useEffect(() => {
@@ -28,4 +28,6 @@ export default function Home() {
   return (
     <InvoicesTableWithPageWrapper invoices={posts} renderCopyright={render} />
   );
-}
+};
+
+export default Home;

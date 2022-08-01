@@ -2,6 +2,8 @@ import { withPageWrapper, PageContent } from "../components";
 
 const PageContentWithPageWrapper = withPageWrapper(PageContent);
 
-export default function Create() {
+const Create = () => {
   return <PageContentWithPageWrapper content="Create" />;
-}
+};
+
+export default Create;
