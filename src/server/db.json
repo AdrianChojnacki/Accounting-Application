@@ -5,32 +5,24 @@
       "createdRaw": 1659103146688,
       "until": "31/07/2022",
       "untilRaw": 1659275946000,
-      "amount": 123,
+      "amount": 1232134,
       "id": 1
     },
     {
       "created": "29/07/2022",
       "createdRaw": 1659103146688,
-      "until": "30/07/2022",
-      "untilRaw": 1659189546000,
-      "amount": 109.9,
+      "until": "03/08/2022",
+      "untilRaw": 1659535146000,
+      "amount": 109.89,
       "id": 2
     },
     {
       "created": "01/08/2022",
-      "createdRaw": 1659366707918,
+      "createdRaw": 1659370432841,
       "until": "01/08/2022",
-      "untilRaw": 1659366707918,
-      "amount": 345,
+      "untilRaw": 1659370432841,
+      "amount": 1337,
       "id": 3
-    },
-    {
-      "created": "01/08/2022",
-      "createdRaw": 1659367385076,
-      "until": "01/08/2022",
-      "untilRaw": 1659367385076,
-      "amount": 312,
-      "id": 4
     }
   ]
 }

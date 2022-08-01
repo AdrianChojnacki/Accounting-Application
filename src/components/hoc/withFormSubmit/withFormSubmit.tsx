@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { ListReloadSetTrueContext } from "../../../providers";
 import { IFormErrors, IFormInputs, IFormValidation } from ".";
 
 const withFormSubmit =
@@ -16,6 +17,7 @@ const withFormSubmit =
     });
     const [success, setSuccess] = useState<boolean>(false);
     const { control, handleSubmit } = useForm<IFormInputs>();
+    const setReloadTrue = useContext(ListReloadSetTrueContext);
 
     const formValidation: IFormValidation = (created, until, amount) => {
       let noCreationDate = false;
@@ -105,6 +107,7 @@ const withFormSubmit =
 
       setSuccess(true);
       setTimeout(() => setSuccess(false), 3000);
+      setReloadTrue();
     };
 
     return (
