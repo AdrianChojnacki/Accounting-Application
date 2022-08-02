@@ -6,7 +6,7 @@ import { withPageWrapper, InvoiceDetails } from "../components";
 const InvoiceDetailsWithPageWrapper = withPageWrapper(InvoiceDetails);
 
 const Invoice = () => {
-  const [invoiceData, setInvoiceData] = useState({});
+  const [invoiceData, setInvoiceData] = useState<object>({});
   const { id } = useParams();
 
   useEffect(() => {

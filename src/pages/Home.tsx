@@ -6,7 +6,7 @@ import { ListReloadContext, ListReloadSetFalseContext } from "../providers";
 const InvoicesTableWithPageWrapper = withPageWrapper(InvoicesTable);
 
 const Home = () => {
-  const [invoices, setInvoices] = useState([]);
+  const [invoices, setInvoices] = useState<object[]>([]);
   const reload = useContext(ListReloadContext);
   const setReloadFalse = useContext(ListReloadSetFalseContext);
 
@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <InvoicesTableWithPageWrapper
       invoices={invoices}
-      render={() => `Księgowość Kogucik © ${new Date().getFullYear()}`}
+      renderCopyright={() => `Księgowość Kogucik © ${new Date().getFullYear()}`}
     />
   );
 };

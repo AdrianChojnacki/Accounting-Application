@@ -11,7 +11,7 @@ import { DeleteButton, EditButton, DetailsButton } from "..";
 import InvoicesTableCSS from "./InvoicesTable.module.css";
 import { IInvoicesTableProps } from ".";
 
-const InvoicesTable = ({ invoices, render }: IInvoicesTableProps) => {
+const InvoicesTable = ({ invoices, renderCopyright }: IInvoicesTableProps) => {
   const invoicesList = invoices.map((invoice) => (
     <TableRow
       key={invoice.id}
@@ -45,7 +45,7 @@ const InvoicesTable = ({ invoices, render }: IInvoicesTableProps) => {
           <TableBody>{invoicesList}</TableBody>
         </Table>
       </TableContainer>
-      <p className={InvoicesTableCSS.footer}>{render()}</p>
+      <p className={InvoicesTableCSS.footer}>{renderCopyright()}</p>
     </>
   );
 };
