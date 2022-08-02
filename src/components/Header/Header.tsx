@@ -3,8 +3,8 @@ import { Stack, Button } from "@mui/material";
 import HeaderCSS from "./Header.module.css";
 
 const texts = {
-  invoices: "INVOICES",
-  create: "CREATE",
+  invoices: "INVOICES LIST",
+  create: "CREATE INVOICE",
 };
 
 const Header = () => {
