@@ -14,7 +14,7 @@ const Edit = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/posts/${id}`)
+      .get(`${process.env.REACT_APP_API_URL}/invoices/${id}`)
       .then((res) => {
         setContent(
           <InvoiceEditWithFormSubmitWithPageWrapper invoiceData={res.data} />,

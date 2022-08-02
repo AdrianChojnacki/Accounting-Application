@@ -12,7 +12,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/posts")
+      .get(`${process.env.REACT_APP_API_URL}/invoices`)
       .then((res) => {
         setInvoices(res.data);
         setReloadFalse();

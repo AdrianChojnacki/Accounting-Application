@@ -79,7 +79,7 @@ const withFormSubmit =
       if (passThroughProps.invoiceData) {
         axios
           .patch(
-            `http://localhost:3001/posts/${passThroughProps.invoiceData.id}`,
+            `${process.env.REACT_APP_API_URL}/invoices/${passThroughProps.invoiceData.id}`,
             {
               created,
               createdRaw,
@@ -93,7 +93,7 @@ const withFormSubmit =
           });
       } else {
         axios
-          .post("http://localhost:3001/posts", {
+          .post(`${process.env.REACT_APP_API_URL}/invoices`, {
             created,
             createdRaw,
             until,

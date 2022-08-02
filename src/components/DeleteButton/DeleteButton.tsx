@@ -8,9 +8,11 @@ const DeleteButton = ({ id }: { id: number }) => {
   const setReloadTrue = useContext(ListReloadSetTrueContext);
 
   const handleClick = () => {
-    axios.delete(`http://localhost:3001/posts/${id}`).catch((err) => {
-      console.log(err);
-    });
+    axios
+      .delete(`${process.env.REACT_APP_API_URL}/invoices/${id}`)
+      .catch((err) => {
+        console.log(err);
+      });
 
     setReloadTrue();
   };
