@@ -1,0 +1,14 @@
+.head {
+  background-color: #f87474;
+}
+
+.head th {
+  color: #fff;
+  font-weight: 700;
+}
+
+.footer {
+  margin-top: 0.625rem;
+  font-size: 0.75rem;
+  text-align: right;
+}

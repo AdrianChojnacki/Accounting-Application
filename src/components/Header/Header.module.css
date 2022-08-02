@@ -1,0 +1,13 @@
+.header {
+  padding: 1.25rem;
+  background-color: #ffb562;
+}
+
+.header .link {
+  text-decoration: none;
+}
+
+.header .btn {
+  background-color: #3ab0ff;
+  font-weight: 700;
+}
