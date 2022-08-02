@@ -10,9 +10,11 @@ const Home = () => {
   const reload = useContext(ListReloadContext);
   const setReloadFalse = useContext(ListReloadSetFalseContext);
 
+  const url = `${process.env.REACT_APP_API_URL}`;
+
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/invoices`)
+      .get(url)
       .then((res) => {
         setInvoices(res.data);
         setReloadFalse();

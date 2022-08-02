@@ -7,12 +7,12 @@ import DeleteButtonCSS from "./DeleteButton.module.css";
 const DeleteButton = ({ id }: { id: number }) => {
   const setReloadTrue = useContext(ListReloadSetTrueContext);
 
+  const url = `${process.env.REACT_APP_API_URL}/${id}`;
+
   const handleClick = () => {
-    axios
-      .delete(`${process.env.REACT_APP_API_URL}/invoices/${id}`)
-      .catch((err) => {
-        console.log(err);
-      });
+    axios.delete(url).catch((err) => {
+      console.log(err);
+    });
 
     setReloadTrue();
   };

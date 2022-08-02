@@ -9,9 +9,11 @@ const Invoice = () => {
   const [invoiceData, setInvoiceData] = useState<object>({});
   const { id } = useParams();
 
+  const url = `${process.env.REACT_APP_API_URL}/${id}`;
+
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/invoices/${id}`)
+      .get(url)
       .then((res) => {
         setInvoiceData(res.data);
       })

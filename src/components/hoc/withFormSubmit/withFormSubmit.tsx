@@ -76,24 +76,23 @@ const withFormSubmit =
 
       amount = +amount;
 
+      const url = `${process.env.REACT_APP_API_URL}`;
+
       if (passThroughProps.invoiceData) {
         axios
-          .patch(
-            `${process.env.REACT_APP_API_URL}/invoices/${passThroughProps.invoiceData.id}`,
-            {
-              created,
-              createdRaw,
-              until,
-              untilRaw,
-              amount,
-            },
-          )
+          .patch(`${url}/${passThroughProps.invoiceData.id}`, {
+            created,
+            createdRaw,
+            until,
+            untilRaw,
+            amount,
+          })
           .catch((err) => {
             console.log(err);
           });
       } else {
         axios
-          .post(`${process.env.REACT_APP_API_URL}/invoices`, {
+          .post(url, {
             created,
             createdRaw,
             until,
