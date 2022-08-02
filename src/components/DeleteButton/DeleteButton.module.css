@@ -10,5 +10,5 @@
 .icon {
   width: 1.5em;
   height: 1.5em;
-  color: #f87474;
+  color: var(--colorPalette04);
 }

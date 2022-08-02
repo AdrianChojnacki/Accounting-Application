@@ -1,6 +1,6 @@
 .header {
   padding: 1.25rem;
-  background-color: #ffb562;
+  background-color: var(--colorPalette03);
 }
 
 .header .link {
@@ -8,6 +8,6 @@
 }
 
 .header .btn {
-  background-color: #3ab0ff;
+  background-color: var(--colorPalette02);
   font-weight: 700;
 }

@@ -1,6 +1,6 @@
 .text {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-size: 30px;
-  color: #3ab0ff;
+  color: var(--colorPalette02);
   text-align: center;
 }

@@ -1,4 +1,4 @@
 div .btn {
-  background-color: #3ab0ff;
+  background-color: var(--colorPalette02);
   font-weight: 700;
 }

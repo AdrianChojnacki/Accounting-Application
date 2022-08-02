@@ -3,6 +3,6 @@
   margin: 0;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-size: 14px;
-  color: #f87474;
+  color: var(--colorPalette04);
   transform: translateX(14px);
 }
