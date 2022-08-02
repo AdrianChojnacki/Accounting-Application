@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
 
-export interface IListReloadProviderProps {
+export interface IProviderProps {
   children: ReactNode;
 }

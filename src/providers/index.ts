@@ -1,2 +1,3 @@
 export * from "./ListReloadProvider";
-export * from "./ListReloadProvider.types";
+export * from "./SpinnerProvider";
+export * from "./types";

@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ListReloadProvider } from "./providers";
+import { ListReloadProvider, SpinnerProvider } from "./providers";
 
 const Home = lazy(() => import("./pages/Home"));
 const Create = lazy(() => import("./pages/Create"));
@@ -11,50 +11,52 @@ const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 function App() {
   return (
     <ListReloadProvider>
-      <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Suspense fallback="Loading...">
-                <Home />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/create"
-            element={
-              <Suspense fallback="Loading...">
-                <Create />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/invoice/:id"
-            element={
-              <Suspense fallback="Loading...">
-                <Invoice />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/invoice/:id/edit"
-            element={
-              <Suspense fallback="Loading...">
-                <Edit />
-              </Suspense>
-            }
-          />
-          <Route
-            path="*"
-            element={
-              <Suspense fallback="Loading...">
-                <PageNotFound />
-              </Suspense>
-            }
-          />
-        </Routes>
-      </Router>
+      <SpinnerProvider>
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Suspense fallback="Loading...">
+                  <Home />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/create"
+              element={
+                <Suspense fallback="Loading...">
+                  <Create />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/invoice/:id"
+              element={
+                <Suspense fallback="Loading...">
+                  <Invoice />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/invoice/:id/edit"
+              element={
+                <Suspense fallback="Loading...">
+                  <Edit />
+                </Suspense>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <Suspense fallback="Loading...">
+                  <PageNotFound />
+                </Suspense>
+              }
+            />
+          </Routes>
+        </Router>
+      </SpinnerProvider>
     </ListReloadProvider>
   );
 }

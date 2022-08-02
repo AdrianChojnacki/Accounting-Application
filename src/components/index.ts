@@ -14,3 +14,4 @@ export * from "./EditButton";
 export * from "./DeleteButton";
 export * from "./ErrorMessage";
 export * from "./SuccessMessage";
+export * from "./Spinner";
