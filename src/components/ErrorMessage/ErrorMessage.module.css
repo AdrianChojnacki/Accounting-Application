@@ -1,5 +1,6 @@
 .text {
   position: absolute;
+  margin: 0;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-size: 14px;
   color: #f87474;
