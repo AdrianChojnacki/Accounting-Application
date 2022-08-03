@@ -1,7 +1,12 @@
 import { ReactElement, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { withFormSubmit, withPageWrapper, InvoiceEdit } from "../components";
+import {
+  withFormSubmit,
+  withPageWrapper,
+  InvoiceEdit,
+  Spinner,
+} from "../components";
 
 const InvoiceEditWithFormSubmit = withFormSubmit(InvoiceEdit);
 const InvoiceEditWithFormSubmitWithPageWrapper = withPageWrapper(
@@ -10,6 +15,7 @@ const InvoiceEditWithFormSubmitWithPageWrapper = withPageWrapper(
 
 const Edit = () => {
   const [content, setContent] = useState<ReactElement>();
+  const [editReload, setEditReload] = useState<boolean>(true);
   const { id } = useParams();
 
   const url = `${process.env.REACT_APP_API_URL}/${id}`;
@@ -21,13 +27,19 @@ const Edit = () => {
         setContent(
           <InvoiceEditWithFormSubmitWithPageWrapper invoiceData={res.data} />,
         );
+        setEditReload(false);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  return <>{content}</>;
+  return (
+    <>
+      {editReload && <Spinner />}
+      {content}
+    </>
+  );
 };
 
 export default Edit;

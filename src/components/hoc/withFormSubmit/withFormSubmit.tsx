@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { Spinner } from "../..";
 import { ListReloadSetTrueContext } from "../../../providers";
 import { IFormErrors, IFormInputs, IFormValidation } from ".";
 
@@ -16,6 +17,7 @@ const withFormSubmit =
       noAmount: false,
     });
     const [success, setSuccess] = useState<boolean>(false);
+    const [submitReload, setSubmitReload] = useState<boolean>(false);
     const { control, handleSubmit } = useForm<IFormInputs>();
     const setReloadTrue = useContext(ListReloadSetTrueContext);
 
@@ -51,6 +53,8 @@ const withFormSubmit =
     };
 
     const onSubmit = (data: any) => {
+      setSubmitReload(true);
+
       let { created, until, amount } = data;
 
       const isFormValid = formValidation(created, until, amount);
@@ -87,6 +91,11 @@ const withFormSubmit =
             untilRaw,
             amount,
           })
+          .then(() => {
+            setSubmitReload(false);
+            setSuccess(true);
+            setTimeout(() => setSuccess(false), 1500);
+          })
           .catch((err) => {
             console.log(err);
           });
@@ -99,27 +108,32 @@ const withFormSubmit =
             untilRaw,
             amount,
           })
+          .then(() => {
+            setSubmitReload(false);
+            setSuccess(true);
+            setTimeout(() => setSuccess(false), 1500);
+          })
           .catch((err) => {
             console.log(err);
           });
       }
-
-      setSuccess(true);
-      setTimeout(() => setSuccess(false), 3000);
       setReloadTrue();
     };
 
     return (
-      <form action="/" method="POST" onSubmit={handleSubmit(onSubmit)}>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <Component
-            errors={errors}
-            success={success}
-            control={control}
-            {...passThroughProps}
-          />
-        </LocalizationProvider>
-      </form>
+      <>
+        {submitReload && <Spinner />}
+        <form action="/" method="POST" onSubmit={handleSubmit(onSubmit)}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <Component
+              errors={errors}
+              success={success}
+              control={control}
+              {...passThroughProps}
+            />
+          </LocalizationProvider>
+        </form>
+      </>
     );
   };
 

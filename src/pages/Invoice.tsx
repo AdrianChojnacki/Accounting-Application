@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { withPageWrapper, InvoiceDetails } from "../components";
+import { withPageWrapper, InvoiceDetails, Spinner } from "../components";
 
 const InvoiceDetailsWithPageWrapper = withPageWrapper(InvoiceDetails);
 
 const Invoice = () => {
-  const [invoiceData, setInvoiceData] = useState<object>({});
+  const [content, setContent] = useState<ReactElement>();
+  const [invoiceReload, setInvoiceReload] = useState<boolean>(true);
   const { id } = useParams();
 
   const url = `${process.env.REACT_APP_API_URL}/${id}`;
@@ -15,14 +16,20 @@ const Invoice = () => {
     axios
       .get(url)
       .then((res) => {
-        setInvoiceData(res.data);
+        setContent(<InvoiceDetailsWithPageWrapper invoiceData={res.data} />);
+        setInvoiceReload(false);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  return <InvoiceDetailsWithPageWrapper invoiceData={invoiceData} />;
+  return (
+    <>
+      {invoiceReload && <Spinner />}
+      {content}
+    </>
+  );
 };
 
 export default Invoice;
