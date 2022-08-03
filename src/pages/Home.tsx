@@ -1,21 +1,15 @@
 import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { withPageWrapper, InvoicesTable, Spinner } from "../components";
-import {
-  ListReloadContext,
-  ListReloadSetFalseContext,
-  SpinnerContext,
-  SpinnerSetFalseContext,
-} from "../providers";
+import { ListReloadContext, ListReloadSetFalseContext } from "../providers";
 
 const InvoicesTableWithPageWrapper = withPageWrapper(InvoicesTable);
 
 const Home = () => {
   const [invoices, setInvoices] = useState<object[]>([]);
+  const [homeReload, setHomeReload] = useState<boolean>(true);
   const reload = useContext(ListReloadContext);
   const setReloadFalse = useContext(ListReloadSetFalseContext);
-  const spinner = useContext(SpinnerContext);
-  const setSpinnerFalse = useContext(SpinnerSetFalseContext);
 
   const url = `${process.env.REACT_APP_API_URL}`;
 
@@ -24,8 +18,8 @@ const Home = () => {
       .get(url)
       .then((res) => {
         setInvoices(res.data);
+        setHomeReload(false);
         setReloadFalse();
-        setSpinnerFalse();
       })
       .catch((err) => {
         console.log(err);
@@ -34,7 +28,7 @@ const Home = () => {
 
   return (
     <>
-      {spinner && <Spinner />}
+      {(homeReload || reload) && <Spinner />}
       <InvoicesTableWithPageWrapper
         invoices={invoices}
         renderCopyright={() =>
