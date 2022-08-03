@@ -1,7 +1,7 @@
 import { TableCell, TableRow } from "@mui/material";
 import { SkeletonText } from "..";
 
-const SkeletonTable = ({ rowsNumber }: { rowsNumber: number }) => {
+const SkeletonHome = ({ rowsNumber }: { rowsNumber: number }) => {
   const rows: JSX.Element[] = [];
 
   for (let i = 0; i < rowsNumber; i++) {
@@ -32,4 +32,4 @@ const SkeletonTable = ({ rowsNumber }: { rowsNumber: number }) => {
   return <>{rows}</>;
 };
 
-export { SkeletonTable };
+export { SkeletonHome };

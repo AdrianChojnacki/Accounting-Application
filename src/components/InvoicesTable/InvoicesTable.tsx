@@ -7,7 +7,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import { SkeletonTable, DetailsButton, EditButton, DeleteButton } from "..";
+import { DetailsButton, EditButton, DeleteButton, SkeletonHome } from "..";
 import InvoicesTableCSS from "./InvoicesTable.module.css";
 import { IInvoicesTableProps } from ".";
 
@@ -32,7 +32,7 @@ const InvoicesTable = ({ invoices, renderCopyright }: IInvoicesTableProps) => {
       </TableRow>
     ));
   } else {
-    invoicesList = <SkeletonTable rowsNumber={4} />;
+    invoicesList = <SkeletonHome rowsNumber={4} />;
   }
 
   return (

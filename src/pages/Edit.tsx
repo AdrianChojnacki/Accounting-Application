@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import {
@@ -14,7 +14,7 @@ const InvoiceEditWithFormSubmitWithPageWrapper = withPageWrapper(
 );
 
 const Edit = () => {
-  const [content, setContent] = useState<ReactElement>();
+  const [invoice, setInvoice] = useState<object | null>(null);
   const [editReload, setEditReload] = useState<boolean>(true);
   const { id } = useParams();
 
@@ -24,9 +24,7 @@ const Edit = () => {
     axios
       .get(url)
       .then((res) => {
-        setContent(
-          <InvoiceEditWithFormSubmitWithPageWrapper invoiceData={res.data} />,
-        );
+        setInvoice(res.data);
         setEditReload(false);
       })
       .catch((err) => {
@@ -37,7 +35,7 @@ const Edit = () => {
   return (
     <>
       {editReload && <Spinner />}
-      {content}
+      <InvoiceEditWithFormSubmitWithPageWrapper invoiceData={invoice} />
     </>
   );
 };
