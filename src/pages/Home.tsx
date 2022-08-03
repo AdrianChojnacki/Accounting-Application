@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { ReactElement, useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { withPageWrapper, InvoicesTable, Spinner } from "../components";
 import { ListReloadContext, ListReloadSetFalseContext } from "../providers";
@@ -6,7 +6,7 @@ import { ListReloadContext, ListReloadSetFalseContext } from "../providers";
 const InvoicesTableWithPageWrapper = withPageWrapper(InvoicesTable);
 
 const Home = () => {
-  const [invoices, setInvoices] = useState<object[]>([]);
+  const [content, setContent] = useState<ReactElement>();
   const [homeReload, setHomeReload] = useState<boolean>(true);
   const reload = useContext(ListReloadContext);
   const setReloadFalse = useContext(ListReloadSetFalseContext);
@@ -17,7 +17,14 @@ const Home = () => {
     axios
       .get(url)
       .then((res) => {
-        setInvoices(res.data);
+        setContent(
+          <InvoicesTableWithPageWrapper
+            invoices={res.data}
+            renderCopyright={() =>
+              `Księgowość Kogucik © ${new Date().getFullYear()}`
+            }
+          />,
+        );
         setHomeReload(false);
         setReloadFalse();
       })
@@ -29,12 +36,7 @@ const Home = () => {
   return (
     <>
       {(homeReload || reload) && <Spinner />}
-      <InvoicesTableWithPageWrapper
-        invoices={invoices}
-        renderCopyright={() =>
-          `Księgowość Kogucik © ${new Date().getFullYear()}`
-        }
-      />
+      {content}
     </>
   );
 };
