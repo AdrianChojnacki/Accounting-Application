@@ -1,5 +1,6 @@
 .box {
-  width: 100%;
+  display: inline-block;
+  width: 10rem;
   height: 1rem;
   background-color: var(--colorPalette03);
   animation: pulse infinite 1s;

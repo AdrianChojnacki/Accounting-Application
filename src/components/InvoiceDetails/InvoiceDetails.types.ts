@@ -1,6 +1,8 @@
 export interface IInvoiceDetailsProps {
-  id: number;
-  created: string;
-  until: string;
-  amount: number;
+  invoiceData: {
+    id: number;
+    created: string;
+    until: string;
+    amount: number;
+  } | null;
 }

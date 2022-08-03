@@ -17,3 +17,4 @@ export * from "./SuccessMessage";
 export * from "./Spinner";
 export * from "./SkeletonTable";
 export * from "./SkeletonText";
+export * from "./SkeletonInvoice";
