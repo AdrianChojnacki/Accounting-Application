@@ -6,7 +6,12 @@ import { ListReloadContext, ListReloadSetFalseContext } from "../providers";
 const InvoicesTableWithPageWrapper = withPageWrapper(InvoicesTable);
 
 const Home = () => {
-  const [content, setContent] = useState<ReactElement>();
+  const [content, setContent] = useState<ReactElement>(
+    <InvoicesTableWithPageWrapper
+      invoices={null}
+      renderCopyright={() => "Loading..."}
+    />,
+  );
   const [homeReload, setHomeReload] = useState<boolean>(true);
   const reload = useContext(ListReloadContext);
   const setReloadFalse = useContext(ListReloadSetFalseContext);

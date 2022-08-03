@@ -7,27 +7,33 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import { DeleteButton, EditButton, DetailsButton } from "..";
+import { SkeletonTable, DetailsButton, EditButton, DeleteButton } from "..";
 import InvoicesTableCSS from "./InvoicesTable.module.css";
 import { IInvoicesTableProps } from ".";
 
 const InvoicesTable = ({ invoices, renderCopyright }: IInvoicesTableProps) => {
-  const invoicesList = invoices.map((invoice) => (
-    <TableRow
-      key={invoice.id}
-      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-    >
-      <TableCell>{invoice.id}</TableCell>
-      <TableCell align="right">{invoice.created}</TableCell>
-      <TableCell align="right">{invoice.until}</TableCell>
-      <TableCell align="right">{invoice.amount}</TableCell>
-      <TableCell align="right">
-        <DetailsButton id={invoice.id} />
-        <EditButton id={invoice.id} />
-        <DeleteButton id={invoice.id} />
-      </TableCell>
-    </TableRow>
-  ));
+  let invoicesList;
+
+  if (invoices) {
+    invoicesList = invoices.map((invoice) => (
+      <TableRow
+        key={invoice.id}
+        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+      >
+        <TableCell>{invoice.id}</TableCell>
+        <TableCell align="right">{invoice.created}</TableCell>
+        <TableCell align="right">{invoice.until}</TableCell>
+        <TableCell align="right">{invoice.amount}</TableCell>
+        <TableCell align="right">
+          <DetailsButton id={invoice.id} />
+          <EditButton id={invoice.id} />
+          <DeleteButton id={invoice.id} />
+        </TableCell>
+      </TableRow>
+    ));
+  } else {
+    invoicesList = <SkeletonTable rowsNumber={4} />;
+  }
 
   return (
     <>

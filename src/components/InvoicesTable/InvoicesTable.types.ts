@@ -1,4 +1,4 @@
 export interface IInvoicesTableProps {
-  invoices: Array<any>;
+  invoices: Array<any> | null;
   renderCopyright: Function;
 }

@@ -9,5 +9,5 @@
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.15);
   color: var(--colorPalette02);
-  z-index: 1;
+  z-index: 101;
 }

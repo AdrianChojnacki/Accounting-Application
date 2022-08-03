@@ -15,3 +15,5 @@ export * from "./DeleteButton";
 export * from "./ErrorMessage";
 export * from "./SuccessMessage";
 export * from "./Spinner";
+export * from "./SkeletonTable";
+export * from "./SkeletonText";
