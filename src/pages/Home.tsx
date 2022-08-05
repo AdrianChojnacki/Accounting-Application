@@ -1,9 +1,15 @@
-import { useState, useContext, useEffect } from "react";
+import { memo, useState, useContext, useEffect } from "react";
 import axios from "axios";
-import { withPageWrapper, InvoicesTable, Spinner } from "../components";
+import {
+  withPageWrapper,
+  InvoicesTable,
+  Spinner,
+  Signature,
+} from "../components";
 import { ListReloadContext, ListReloadSetFalseContext } from "../providers";
 
 const InvoicesTableWithPageWrapper = withPageWrapper(InvoicesTable);
+const MemoedSignature = memo(Signature);
 
 const Home = () => {
   const [invoices, setInvoices] = useState<object | null>(null);
@@ -35,6 +41,7 @@ const Home = () => {
           `Księgowość Kogucik © ${new Date().getFullYear()}`
         }
       />
+      <MemoedSignature text="by Adrian Chojnacki" />
     </>
   );
 };

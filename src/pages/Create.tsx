@@ -1,12 +1,12 @@
 import { withFormSubmit, withPageWrapper, InvoiceCreate } from "../components";
 
-const CreateFormWithFormSubmit = withFormSubmit(InvoiceCreate);
-const CreateFormWithFormSubmitWithPageWrapper = withPageWrapper(
-  CreateFormWithFormSubmit,
+const InvoiceCreateWithFormSubmit = withFormSubmit(InvoiceCreate);
+const InvoiceCreateWithFormSubmitWithPageWrapper = withPageWrapper(
+  InvoiceCreateWithFormSubmit,
 );
 
 const Create = () => {
-  return <CreateFormWithFormSubmitWithPageWrapper />;
+  return <InvoiceCreateWithFormSubmitWithPageWrapper />;
 };
 
 export default Create;
