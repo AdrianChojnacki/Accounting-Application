@@ -59,7 +59,10 @@ const withFormSubmit =
 
       const isFormValid = formValidation(created, until, amount);
 
-      if (!isFormValid) return;
+      if (!isFormValid) {
+        setSubmitReload(false);
+        return;
+      }
 
       const createdRaw = created.getTime();
       const untilRaw = until.getTime();
