@@ -5,6 +5,5 @@ export interface IInvoiceCreateProps {
     paymentDateBeforeCreationDate: boolean;
     noAmount: boolean;
   };
-  success: boolean;
   control: any;
 }

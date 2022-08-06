@@ -13,17 +13,12 @@ import {
   ErrorMessage,
   InputField,
   SubmitButton,
-  SuccessMessage,
   SkeletonEdit,
+  Popup,
 } from "..";
 import { IInvoiceEditProps } from ".";
 
-const InvoiceEdit = ({
-  errors,
-  success,
-  control,
-  invoiceData,
-}: IInvoiceEditProps) => {
+const InvoiceEdit = ({ errors, control, invoiceData }: IInvoiceEditProps) => {
   let invoice;
 
   if (invoiceData) {
@@ -91,7 +86,7 @@ const InvoiceEdit = ({
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          {success && <SuccessMessage text="Invoice updated" />}
+          <Popup text="Invoice updated" />
         </Grid>
       </Grid>
     );

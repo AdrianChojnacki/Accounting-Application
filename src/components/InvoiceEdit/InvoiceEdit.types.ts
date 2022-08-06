@@ -5,7 +5,6 @@ export interface IInvoiceEditProps {
     paymentDateBeforeCreationDate: boolean;
     noAmount: boolean;
   };
-  success: boolean;
   control: any;
   invoiceData: {
     id: number;

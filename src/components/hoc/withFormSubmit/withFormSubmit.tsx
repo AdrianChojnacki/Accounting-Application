@@ -4,7 +4,7 @@ import axios from "axios";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { Spinner } from "../..";
-import { ListReloadSetTrueContext } from "../../../providers";
+import { ListReloadSetTrueContext, PopupShowContext } from "../../../providers";
 import { IFormErrors, IFormInputs, IFormValidation } from ".";
 
 const withFormSubmit =
@@ -16,10 +16,10 @@ const withFormSubmit =
       paymentDateBeforeCreationDate: false,
       noAmount: false,
     });
-    const [success, setSuccess] = useState<boolean>(false);
     const [submitReload, setSubmitReload] = useState<boolean>(false);
     const { control, handleSubmit } = useForm<IFormInputs>();
     const setReloadTrue = useContext(ListReloadSetTrueContext);
+    const showPopup = useContext(PopupShowContext);
 
     const formValidation: IFormValidation = (created, until, amount) => {
       let noCreationDate = false;
@@ -93,8 +93,7 @@ const withFormSubmit =
           })
           .then(() => {
             setSubmitReload(false);
-            setSuccess(true);
-            setTimeout(() => setSuccess(false), 1500);
+            showPopup();
           })
           .catch((err) => {
             console.log(err);
@@ -110,8 +109,7 @@ const withFormSubmit =
           })
           .then(() => {
             setSubmitReload(false);
-            setSuccess(true);
-            setTimeout(() => setSuccess(false), 1500);
+            showPopup();
           })
           .catch((err) => {
             console.log(err);
@@ -127,7 +125,6 @@ const withFormSubmit =
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <Component
               errors={errors}
-              success={success}
               control={control}
               {...passThroughProps}
             />
