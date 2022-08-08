@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   Box,
   Grid,
@@ -19,6 +20,8 @@ import {
 import { IInvoiceEditProps } from ".";
 
 const InvoiceEdit = ({ errors, control, invoiceData }: IInvoiceEditProps) => {
+  const { t } = useTranslation();
+
   let invoice;
 
   if (invoiceData) {
@@ -31,7 +34,7 @@ const InvoiceEdit = ({ errors, control, invoiceData }: IInvoiceEditProps) => {
                 <TableRow>
                   <TableCell colSpan={2}>
                     <Box fontWeight="bold" display="inline">
-                      ID:
+                      {t("id")}:
                     </Box>
                     {` ${invoiceData.id}`}
                   </TableCell>
@@ -41,25 +44,27 @@ const InvoiceEdit = ({ errors, control, invoiceData }: IInvoiceEditProps) => {
                     <DatePicker
                       name="created"
                       control={control}
-                      label="Creation date"
+                      label={t("dateAdded")}
                       defaultDate={new Date(invoiceData.createdRaw)}
                     />
                     {errors.noCreationDate && (
-                      <ErrorMessage text="Pick a date" />
+                      <ErrorMessage text={t("pickADate")} />
                     )}
                   </TableCell>
                   <TableCell>
                     <DatePicker
                       name="until"
                       control={control}
-                      label="Payment date"
+                      label={t("paymentDate")}
                       defaultDate={new Date(invoiceData.untilRaw)}
                     />
                     {errors.noPaymentDate && (
-                      <ErrorMessage text="Pick a date" />
+                      <ErrorMessage text={t("pickADate")} />
                     )}
                     {errors.paymentDateBeforeCreationDate && (
-                      <ErrorMessage text="Payment date cannot be before creation date" />
+                      <ErrorMessage
+                        text={t("paymentDateCannotBeBeforeAddedDate")}
+                      />
                     )}
                   </TableCell>
                 </TableRow>
@@ -68,11 +73,11 @@ const InvoiceEdit = ({ errors, control, invoiceData }: IInvoiceEditProps) => {
                     <InputField
                       name="amount"
                       control={control}
-                      label="Amount"
+                      label={t("amount")}
                       defaultValue={invoiceData.amount}
                     />
                     {errors.noAmount && (
-                      <ErrorMessage text="Amount cannot be 0" />
+                      <ErrorMessage text={t("amountCannotBe0")} />
                     )}
                   </TableCell>
                 </TableRow>
@@ -82,11 +87,11 @@ const InvoiceEdit = ({ errors, control, invoiceData }: IInvoiceEditProps) => {
         </Grid>
         <Grid item xs={12}>
           <Grid container justifyContent="flex-end">
-            <SubmitButton text="Save" />
+            <SubmitButton text={t("save")} />
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <SuccessPopup text="Invoice updated" />
+          <SuccessPopup text={t("changesSaved")} />
         </Grid>
       </Grid>
     );

@@ -15,7 +15,7 @@ const Home = () => {
           `${t("bookkeeping")} © ${new Date().getFullYear()}`
         }
       />
-      <MemoedSignature text="by Adrian Chojnacki" />
+      <MemoedSignature text={t("author")} />
     </>
   );
 };

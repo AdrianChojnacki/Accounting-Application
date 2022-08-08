@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
 import {
   Table,
@@ -24,6 +25,7 @@ const InvoicesTable = ({ renderCopyright }: IInvoicesTableProps) => {
   const [invoices, setInvoices] = useState<Array<object> | null>(null);
   const [tableReload, setTableReload] = useState<boolean>(true);
   const [popupState, setPopupState] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   const showPopup = () => setPopupState(true);
   const hidePopup = () => setPopupState(false);
@@ -73,7 +75,7 @@ const InvoicesTable = ({ renderCopyright }: IInvoicesTableProps) => {
             <EditButton id={id} />
             <DeleteButton onClick={showPopup} />
             <DeletePopup
-              text={`Do you wan't to delete invoice ID: ${id}?`}
+              text={t("doYouWantToDelete", { id })}
               popupState={popupState}
               hidePopup={hidePopup}
               deleteClick={deleteClick}
@@ -93,11 +95,11 @@ const InvoicesTable = ({ renderCopyright }: IInvoicesTableProps) => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead className={InvoicesTableCSS.head}>
             <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell align="right">Created</TableCell>
-              <TableCell align="right">Payment until</TableCell>
-              <TableCell align="right">Amount</TableCell>
-              <TableCell align="right">Actions</TableCell>
+              <TableCell>{t("ID")}</TableCell>
+              <TableCell align="right">{t("added")}</TableCell>
+              <TableCell align="right">{t("paymentUntil")}</TableCell>
+              <TableCell align="right">{t("amount")}</TableCell>
+              <TableCell align="right">{t("actions")}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>{invoicesList}</TableBody>

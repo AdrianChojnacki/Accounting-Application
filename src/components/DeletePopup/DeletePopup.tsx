@@ -1,4 +1,5 @@
 import { forwardRef, ReactElement, Ref } from "react";
+import { useTranslation } from "react-i18next";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -22,6 +23,8 @@ const DeletePopup = ({
   hidePopup,
   deleteClick,
 }: IDeletePopupProps) => {
+  const { t } = useTranslation();
+
   return (
     <Dialog
       open={popupState}
@@ -38,8 +41,8 @@ const DeletePopup = ({
     >
       <DialogTitle>{text}</DialogTitle>
       <DialogActions>
-        <SubmitButton text="YES" onClick={deleteClick} />
-        <SubmitButton text="NO" onClick={hidePopup} />
+        <SubmitButton text={t("yes")} onClick={deleteClick} />
+        <SubmitButton text={t("no")} onClick={hidePopup} />
       </DialogActions>
     </Dialog>
   );

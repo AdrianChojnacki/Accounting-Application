@@ -1,4 +1,5 @@
 import { forwardRef, ReactElement, Ref, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -19,6 +20,7 @@ const Transition = forwardRef(function Transition(
 const SuccessPopup = ({ text }: { text: string }) => {
   const popupState = useContext(SuccessPopupContext);
   const hideSuccessPopup = useContext(SuccessPopupHideContext);
+  const { t } = useTranslation();
 
   return (
     <Dialog
@@ -33,7 +35,7 @@ const SuccessPopup = ({ text }: { text: string }) => {
     >
       <DialogTitle>{text}</DialogTitle>
       <DialogActions>
-        <SubmitButton text="OK" onClick={hideSuccessPopup} />
+        <SubmitButton text={t("ok")} onClick={hideSuccessPopup} />
       </DialogActions>
     </Dialog>
   );
