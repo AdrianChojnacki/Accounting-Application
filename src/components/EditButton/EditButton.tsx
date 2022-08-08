@@ -5,9 +5,9 @@ import EditButtonCSS from "./EditButton.module.css";
 const EditButton = ({ id }: { id: number }) => {
   return (
     <Link to={`/invoice/${id}/edit`}>
-      <span className={EditButtonCSS.btn}>
+      <button className={EditButtonCSS.btn} type="button">
         <BiEdit className={EditButtonCSS.icon} />
-      </span>
+      </button>
     </Link>
   );
 };
