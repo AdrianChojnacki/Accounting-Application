@@ -8,8 +8,8 @@ import {
   Paper,
 } from "@mui/material";
 import { DetailsButton, EditButton, DeleteButton, SkeletonHome } from "..";
-import InvoicesTableCSS from "./InvoicesTable.module.css";
 import { IInvoicesTableProps } from ".";
+import InvoicesTableCSS from "./InvoicesTable.module.css";
 
 const InvoicesTable = ({ invoices, renderCopyright }: IInvoicesTableProps) => {
   let invoicesList;

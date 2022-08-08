@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
-import SubmitButtonCSS from "./SubmitButton.module.css";
 import { ISubmitButtonProps } from ".";
+import SubmitButtonCSS from "./SubmitButton.module.css";
 
 const SubmitButton = ({ text, onClick }: ISubmitButtonProps) => {
   return (
