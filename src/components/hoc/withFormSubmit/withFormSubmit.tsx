@@ -26,11 +26,18 @@ const withFormSubmit =
       let paymentDateBeforeCreationDate = false;
       let noAmount = false;
 
-      if (!created) noCreationDate = true;
-      if (!until) noPaymentDate = true;
-      if (created && until && created > until)
+      if (!created) {
+        noCreationDate = true;
+      }
+      if (!until) {
+        noPaymentDate = true;
+      }
+      if (created && until && created > until) {
         paymentDateBeforeCreationDate = true;
-      if (amount == 0) noAmount = true;
+      }
+      if (amount == 0) {
+        noAmount = true;
+      }
 
       setErrors({
         noCreationDate,
@@ -67,16 +74,24 @@ const withFormSubmit =
       const untilRaw = until.getTime();
 
       let creationDay = created.getDate();
-      if (creationDay < 10) creationDay = `0${creationDay}`;
+      if (creationDay < 10) {
+        creationDay = `0${creationDay}`;
+      }
       let creationMonth = created.getMonth() + 1;
-      if (creationMonth < 10) creationMonth = `0${creationMonth}`;
+      if (creationMonth < 10) {
+        creationMonth = `0${creationMonth}`;
+      }
       const creationYear = created.getFullYear();
       created = `${creationDay}/${creationMonth}/${creationYear}`;
 
       let paymentDay = until.getDate();
-      if (paymentDay < 10) paymentDay = `0${paymentDay}`;
+      if (paymentDay < 10) {
+        paymentDay = `0${paymentDay}`;
+      }
       let paymentMonth = until.getMonth() + 1;
-      if (paymentMonth < 10) paymentMonth = `0${paymentMonth}`;
+      if (paymentMonth < 10) {
+        paymentMonth = `0${paymentMonth}`;
+      }
       const paymentYear = until.getFullYear();
       until = `${paymentDay}/${paymentMonth}/${paymentYear}`;
 
