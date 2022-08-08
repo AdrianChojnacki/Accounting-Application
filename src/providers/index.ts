@@ -1,3 +1,3 @@
-export * from "./PopupProvider";
+export * from "./SuccessPopupProvider";
 
 export * from "./types";

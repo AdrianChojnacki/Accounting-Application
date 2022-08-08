@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { PopupProvider } from "./providers";
+import { SuccessPopupProvider } from "./providers";
 
 const Home = lazy(() => import("./pages/Home"));
 const Create = lazy(() => import("./pages/Create"));
@@ -10,7 +10,7 @@ const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 
 function App() {
   return (
-    <PopupProvider>
+    <SuccessPopupProvider>
       <Router>
         <Routes>
           <Route
@@ -55,7 +55,7 @@ function App() {
           />
         </Routes>
       </Router>
-    </PopupProvider>
+    </SuccessPopupProvider>
   );
 }
 

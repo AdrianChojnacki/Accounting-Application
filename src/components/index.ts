@@ -19,4 +19,4 @@ export * from "./SkeletonText";
 export * from "./SkeletonInvoice";
 export * from "./SkeletonEdit";
 export * from "./Signature";
-export * from "./Popup";
+export * from "./SuccessPopup";

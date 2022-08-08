@@ -14,7 +14,7 @@ import {
   InputField,
   SubmitButton,
   SkeletonEdit,
-  Popup,
+  SuccessPopup,
 } from "..";
 import { IInvoiceEditProps } from ".";
 
@@ -86,7 +86,7 @@ const InvoiceEdit = ({ errors, control, invoiceData }: IInvoiceEditProps) => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <Popup text="Invoice updated" />
+          <SuccessPopup text="Invoice updated" />
         </Grid>
       </Grid>
     );

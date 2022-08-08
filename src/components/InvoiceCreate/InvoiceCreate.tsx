@@ -1,5 +1,11 @@
 import { Box, Grid } from "@mui/material";
-import { DatePicker, ErrorMessage, InputField, SubmitButton, Popup } from "..";
+import {
+  DatePicker,
+  ErrorMessage,
+  InputField,
+  SubmitButton,
+  SuccessPopup,
+} from "..";
 import { IInvoiceCreateProps } from ".";
 
 const InvoiceCreate = ({ errors, control }: IInvoiceCreateProps) => {
@@ -44,7 +50,7 @@ const InvoiceCreate = ({ errors, control }: IInvoiceCreateProps) => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <Popup text="Invoice created" />
+          <SuccessPopup text="Invoice created" />
         </Grid>
       </Grid>
     </Box>

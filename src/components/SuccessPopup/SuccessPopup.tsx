@@ -4,8 +4,8 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
+import { SuccessPopupContext, SuccessPopupHideContext } from "../../providers";
 import { SubmitButton } from "..";
-import { PopupContext, PopupHideContext } from "../../providers";
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
@@ -16,9 +16,9 @@ const Transition = forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Popup = ({ text }: { text: string }) => {
-  const popupState = useContext(PopupContext);
-  const hidePopup = useContext(PopupHideContext);
+const SuccessPopup = ({ text }: { text: string }) => {
+  const popupState = useContext(SuccessPopupContext);
+  const hideSuccessPopup = useContext(SuccessPopupHideContext);
 
   return (
     <>
@@ -26,16 +26,16 @@ const Popup = ({ text }: { text: string }) => {
         open={popupState}
         TransitionComponent={Transition}
         keepMounted
-        onClose={hidePopup}
+        onClose={hideSuccessPopup}
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle>{text}</DialogTitle>
         <DialogActions>
-          <SubmitButton text="OK" onClick={hidePopup} />
+          <SubmitButton text="OK" onClick={hideSuccessPopup} />
         </DialogActions>
       </Dialog>
     </>
   );
 };
 
-export { Popup };
+export { SuccessPopup };
