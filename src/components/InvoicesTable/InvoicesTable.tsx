@@ -15,6 +15,7 @@ import {
   DeleteButton,
   SkeletonHome,
   Spinner,
+  DeletePopup,
 } from "..";
 import { IInvoicesTableProps } from ".";
 import InvoicesTableCSS from "./InvoicesTable.module.css";
@@ -22,6 +23,11 @@ import InvoicesTableCSS from "./InvoicesTable.module.css";
 const InvoicesTable = ({ renderCopyright }: IInvoicesTableProps) => {
   const [invoices, setInvoices] = useState<Array<object> | null>(null);
   const [tableReload, setTableReload] = useState<boolean>(true);
+  const [popupState, setPopupState] = useState<boolean>(false);
+
+  const showPopup = () => setPopupState(true);
+  const hidePopup = () => setPopupState(false);
+
   let invoicesList;
 
   const url = `${process.env.REACT_APP_API_URL}`;
@@ -40,29 +46,38 @@ const InvoicesTable = ({ renderCopyright }: IInvoicesTableProps) => {
 
   if (invoices) {
     invoicesList = invoices.map((invoice: any) => {
+      const { id, created, until, amount } = invoice;
+
       const invoiceUrl = `${url}/${invoice.id}`;
 
       const deleteClick = () => {
-        setTableReload(true);
-
         axios.delete(invoiceUrl).catch((err) => {
           console.log(err);
         });
+
+        setTableReload(true);
+        hidePopup();
       };
 
       return (
         <TableRow
-          key={invoice.id}
+          key={id}
           sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
         >
           <TableCell>{invoice.id}</TableCell>
-          <TableCell align="right">{invoice.created}</TableCell>
-          <TableCell align="right">{invoice.until}</TableCell>
-          <TableCell align="right">{invoice.amount}</TableCell>
+          <TableCell align="right">{created}</TableCell>
+          <TableCell align="right">{until}</TableCell>
+          <TableCell align="right">{amount}</TableCell>
           <TableCell align="right">
-            <DetailsButton id={invoice.id} />
-            <EditButton id={invoice.id} />
-            <DeleteButton onClick={deleteClick} />
+            <DetailsButton id={id} />
+            <EditButton id={id} />
+            <DeleteButton onClick={showPopup} />
+            <DeletePopup
+              text={`Do you wan't to delete invoice ID: ${id}?`}
+              popupState={popupState}
+              hidePopup={hidePopup}
+              deleteClick={deleteClick}
+            />
           </TableCell>
         </TableRow>
       );

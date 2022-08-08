@@ -20,3 +20,4 @@ export * from "./SkeletonInvoice";
 export * from "./SkeletonEdit";
 export * from "./Signature";
 export * from "./SuccessPopup";
+export * from "./DeletePopup";

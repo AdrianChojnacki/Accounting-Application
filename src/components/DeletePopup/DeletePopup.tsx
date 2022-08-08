@@ -1,11 +1,11 @@
-import { forwardRef, ReactElement, Ref, useContext } from "react";
+import { forwardRef, ReactElement, Ref } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
-import { SuccessPopupContext, SuccessPopupHideContext } from "../../providers";
 import { SubmitButton } from "..";
+import { IDeletePopupProps } from ".";
 
 const Transition = forwardRef(function Transition(
   props: TransitionProps & {
@@ -16,27 +16,33 @@ const Transition = forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const SuccessPopup = ({ text }: { text: string }) => {
-  const popupState = useContext(SuccessPopupContext);
-  const hideSuccessPopup = useContext(SuccessPopupHideContext);
-
+const DeletePopup = ({
+  text,
+  popupState,
+  hidePopup,
+  deleteClick,
+}: IDeletePopupProps) => {
   return (
     <Dialog
       open={popupState}
       TransitionComponent={Transition}
       keepMounted
-      onClose={hideSuccessPopup}
+      onClose={hidePopup}
       aria-describedby="alert-dialog-slide-description"
+      BackdropProps={{
+        style: { backgroundColor: "rgba(0, 0, 0, .075)" },
+      }}
       PaperProps={{
         style: { boxShadow: "none" },
       }}
     >
       <DialogTitle>{text}</DialogTitle>
       <DialogActions>
-        <SubmitButton text="OK" onClick={hideSuccessPopup} />
+        <SubmitButton text="YES" onClick={deleteClick} />
+        <SubmitButton text="NO" onClick={hidePopup} />
       </DialogActions>
     </Dialog>
   );
 };
 
-export { SuccessPopup };
+export { DeletePopup };
