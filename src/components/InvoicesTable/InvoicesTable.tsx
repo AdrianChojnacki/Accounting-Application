@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import {
   Table,
@@ -9,26 +9,45 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import { ListReloadSetTrueContext } from "../../providers";
-import { DetailsButton, EditButton, DeleteButton, SkeletonHome } from "..";
+import {
+  DetailsButton,
+  EditButton,
+  DeleteButton,
+  SkeletonHome,
+  Spinner,
+} from "..";
 import { IInvoicesTableProps } from ".";
 import InvoicesTableCSS from "./InvoicesTable.module.css";
 
-const InvoicesTable = ({ invoices, renderCopyright }: IInvoicesTableProps) => {
-  const setReloadTrue = useContext(ListReloadSetTrueContext);
-
+const InvoicesTable = ({ renderCopyright }: IInvoicesTableProps) => {
+  const [invoices, setInvoices] = useState<Array<object> | null>(null);
+  const [tableReload, setTableReload] = useState<boolean>(true);
   let invoicesList;
 
-  if (invoices) {
-    invoicesList = invoices.map((invoice) => {
-      const url = `${process.env.REACT_APP_API_URL}/${invoice.id}`;
+  const url = `${process.env.REACT_APP_API_URL}`;
 
-      const handleClick = () => {
-        axios.delete(url).catch((err) => {
+  useEffect(() => {
+    axios
+      .get(url)
+      .then((res) => {
+        setInvoices(res.data);
+        setTableReload(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [tableReload]);
+
+  if (invoices) {
+    invoicesList = invoices.map((invoice: any) => {
+      const invoiceUrl = `${url}/${invoice.id}`;
+
+      const deleteClick = () => {
+        setTableReload(true);
+
+        axios.delete(invoiceUrl).catch((err) => {
           console.log(err);
         });
-
-        setReloadTrue();
       };
 
       return (
@@ -43,7 +62,7 @@ const InvoicesTable = ({ invoices, renderCopyright }: IInvoicesTableProps) => {
           <TableCell align="right">
             <DetailsButton id={invoice.id} />
             <EditButton id={invoice.id} />
-            <DeleteButton onClick={handleClick} />
+            <DeleteButton onClick={deleteClick} />
           </TableCell>
         </TableRow>
       );
@@ -54,6 +73,7 @@ const InvoicesTable = ({ invoices, renderCopyright }: IInvoicesTableProps) => {
 
   return (
     <>
+      {tableReload && <Spinner />}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead className={InvoicesTableCSS.head}>

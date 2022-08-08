@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { PopupShowContext } from "../../../providers";
 import { Spinner } from "../..";
-import { ListReloadSetTrueContext, PopupShowContext } from "../../../providers";
 import { IFormErrors, IFormInputs, IFormValidation } from ".";
 
 const withFormSubmit =
@@ -18,7 +18,6 @@ const withFormSubmit =
     });
     const [submitReload, setSubmitReload] = useState<boolean>(false);
     const { control, handleSubmit } = useForm<IFormInputs>();
-    const setReloadTrue = useContext(ListReloadSetTrueContext);
     const showPopup = useContext(PopupShowContext);
 
     const formValidation: IFormValidation = (created, until, amount) => {
@@ -118,7 +117,6 @@ const withFormSubmit =
             console.log(err);
           });
       }
-      setReloadTrue();
     };
 
     return (
