@@ -7,7 +7,8 @@ const Home = lazy(() => import("./pages/Home"));
 const Create = lazy(() => import("./pages/Create"));
 const Invoice = lazy(() => import("./pages/Invoice"));
 const Edit = lazy(() => import("./pages/Edit"));
-const PageNotFound = lazy(() => import("./pages/PageNotFound"));
+const InvoiceNotFound = lazy(() => import("./pages/InvoiceNotFound"));
+const PathNotFound = lazy(() => import("./pages/PathNotFound"));
 
 const App = () => {
   const { t } = useTranslation();
@@ -49,10 +50,18 @@ const App = () => {
             }
           />
           <Route
+            path="/invoice/notfound"
+            element={
+              <Suspense fallback={t("loading")}>
+                <InvoiceNotFound />
+              </Suspense>
+            }
+          />
+          <Route
             path="*"
             element={
               <Suspense fallback={t("loading")}>
-                <PageNotFound />
+                <PathNotFound />
               </Suspense>
             }
           />

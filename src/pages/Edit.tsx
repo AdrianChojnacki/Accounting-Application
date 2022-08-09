@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
   withFormSubmit,
@@ -17,6 +17,7 @@ const Edit = () => {
   const [invoice, setInvoice] = useState<object | null>(null);
   const [editReload, setEditReload] = useState<boolean>(true);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const url = `${process.env.REACT_APP_API_URL}/${id}`;
 
@@ -29,6 +30,7 @@ const Edit = () => {
       })
       .catch((err) => {
         console.log(err);
+        navigate("/invoice/notfound");
       });
   }, []);
 

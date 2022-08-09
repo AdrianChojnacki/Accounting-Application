@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { withPageWrapper, InvoiceDetails, Spinner } from "../components";
 
@@ -9,6 +9,7 @@ const Invoice = () => {
   const [invoice, setInvoice] = useState<object | null>(null);
   const [invoiceReload, setInvoiceReload] = useState<boolean>(true);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const url = `${process.env.REACT_APP_API_URL}/${id}`;
 
@@ -16,12 +17,12 @@ const Invoice = () => {
     axios
       .get(url)
       .then((res) => {
-        console.log("bang");
         setInvoice(res.data);
         setInvoiceReload(false);
       })
       .catch((err) => {
         console.log(err);
+        navigate("/invoice/notfound");
       });
   }, []);
 

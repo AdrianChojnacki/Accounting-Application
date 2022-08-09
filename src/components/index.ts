@@ -21,3 +21,4 @@ export * from "./SkeletonEdit";
 export * from "./Signature";
 export * from "./SuccessPopup";
 export * from "./DeletePopup";
+export * from "./NotFound";
