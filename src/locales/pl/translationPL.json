@@ -21,5 +21,7 @@
   "invoiceAdded": "Faktura dodana",
   "ok": "Ok",
   "save": "Zapisz",
-  "changesSaved": "Zmiany zapisane"
+  "changesSaved": "Zmiany zapisane",
+  "addANote": "Dodaj notatkę...",
+  "noteKeptInTheLocalStorage": "Notatka przechowywana w Local Storage"
 }
