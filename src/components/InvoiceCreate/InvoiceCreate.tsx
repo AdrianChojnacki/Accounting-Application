@@ -12,10 +12,7 @@ import { IInvoiceCreateProps } from ".";
 
 const InvoiceCreate = ({ errors, control }: IInvoiceCreateProps) => {
   const { t } = useTranslation();
-  const [note, setNote] = useLocalStorage(
-    "note",
-    t("noteKeptInTheLocalStorage"),
-  );
+  const [note, setNote] = useLocalStorage("note", "");
 
   return (
     <>

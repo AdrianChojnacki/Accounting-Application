@@ -21,6 +21,5 @@
   "ok": "Ok",
   "save": "Save",
   "changesSaved": "Changes saved",
-  "addANote": "Add a note...",
-  "noteKeptInTheLocalStorage": "Note stored in the Local Storage"
+  "addANote": "Add a note..."
 }
