@@ -1,32 +1,22 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import {
-  withPageWrapper,
-  InvoicesTable,
-  IInvoicesTableRender,
-} from "../components";
+import { memo } from "react";
+import { useTranslation } from "react-i18next";
+import { withPageWrapper, InvoicesTable, Signature } from "../components";
 
 const InvoicesTableWithPageWrapper = withPageWrapper(InvoicesTable);
+const MemoedSignature = memo(Signature);
 
 const Home = () => {
-  const [posts, setPosts] = useState<object[]>([]);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/posts")
-      .then((res) => {
-        setPosts(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  const render: IInvoicesTableRender = (company, year) =>
-    `${company} © ${year}`;
+  const { t } = useTranslation();
 
   return (
-    <InvoicesTableWithPageWrapper invoices={posts} renderCopyright={render} />
+    <>
+      <InvoicesTableWithPageWrapper
+        renderCopyright={() =>
+          `${t("bookkeeping")} © ${new Date().getFullYear()}`
+        }
+      />
+      <MemoedSignature text={t("author")} />
+    </>
   );
 };
 

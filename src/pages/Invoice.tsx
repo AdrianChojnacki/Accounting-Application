@@ -1,14 +1,37 @@
-import { useParams } from "react-router-dom";
-import { withPageWrapper, PageContent } from "../components";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { withPageWrapper, InvoiceDetails, Spinner } from "../components";
 
-const PageContentWithPageWrapper = withPageWrapper(PageContent);
+const InvoiceDetailsWithPageWrapper = withPageWrapper(InvoiceDetails);
 
 const Invoice = () => {
+  const [invoice, setInvoice] = useState<object | null>(null);
+  const [invoiceReload, setInvoiceReload] = useState<boolean>(true);
   const { id } = useParams();
+  const navigate = useNavigate();
 
-  const content = `Invoice ${id}`;
+  const url = `${process.env.REACT_APP_API_URL}/${id}`;
 
-  return <PageContentWithPageWrapper content={content} />;
+  useEffect(() => {
+    axios
+      .get(url)
+      .then((res) => {
+        setInvoice(res.data);
+        setInvoiceReload(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        navigate("/invoice/notfound");
+      });
+  }, []);
+
+  return (
+    <>
+      {invoiceReload && <Spinner />}
+      <InvoiceDetailsWithPageWrapper invoiceData={invoice} />
+    </>
+  );
 };
 
 export default Invoice;

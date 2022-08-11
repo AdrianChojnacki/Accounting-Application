@@ -1,9 +1,12 @@
-import { withPageWrapper, PageContent } from "../components";
+import { withFormSubmit, withPageWrapper, InvoiceCreate } from "../components";
 
-const PageContentWithPageWrapper = withPageWrapper(PageContent);
+const InvoiceCreateWithFormSubmit = withFormSubmit(InvoiceCreate);
+const InvoiceCreateWithFormSubmitWithPageWrapper = withPageWrapper(
+  InvoiceCreateWithFormSubmit,
+);
 
 const Create = () => {
-  return <PageContentWithPageWrapper content="Create" />;
+  return <InvoiceCreateWithFormSubmitWithPageWrapper />;
 };
 
 export default Create;

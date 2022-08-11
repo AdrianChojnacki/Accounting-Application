@@ -1,0 +1,23 @@
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.box {
+  display: inline-block;
+  width: 10rem;
+  height: 1rem;
+  background-color: var(--colorPalette03);
+  animation: pulse infinite 1s;
+}
+
+.w100 {
+  width: 100%;
+}

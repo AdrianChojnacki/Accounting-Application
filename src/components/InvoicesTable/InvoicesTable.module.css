@@ -1,5 +1,5 @@
 .head {
-  background-color: #f87474;
+  background-color: var(--colorPalette04);
 }
 
 .head th {
