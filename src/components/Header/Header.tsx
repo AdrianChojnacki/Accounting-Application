@@ -1,16 +1,11 @@
 import { Link } from "react-router-dom";
-import i18n from "i18next";
 import { useTranslation } from "react-i18next";
-import { Stack, Button, FormControl, Select, MenuItem } from "@mui/material";
+import { Stack, Button } from "@mui/material";
+import { LangSwitch } from "..";
 import HeaderCSS from "./Header.module.css";
 
 const Header = () => {
-  const { language, changeLanguage } = i18n;
   const { t } = useTranslation();
-
-  const handleChange = (event: any) => {
-    changeLanguage(event.target.value);
-  };
 
   return (
     <header className={HeaderCSS.header}>
@@ -32,16 +27,7 @@ const Header = () => {
             </Button>
           </Link>
         </Stack>
-        <FormControl size="small">
-          <Select
-            value={language}
-            onChange={handleChange}
-            inputProps={{ "aria-label": "Without label" }}
-          >
-            <MenuItem value="pl">Polski</MenuItem>
-            <MenuItem value="en">English</MenuItem>
-          </Select>
-        </FormControl>
+        <LangSwitch />
       </Stack>
     </header>
   );
