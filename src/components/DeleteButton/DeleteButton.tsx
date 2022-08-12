@@ -3,7 +3,12 @@ import DeleteButtonCSS from "./DeleteButton.module.css";
 
 const DeleteButton = ({ onClick }: { onClick: () => void }) => {
   return (
-    <button onClick={onClick} className={DeleteButtonCSS.btn} type="button">
+    <button
+      onClick={onClick}
+      className={DeleteButtonCSS.btn}
+      type="button"
+      data-testid="delete-button"
+    >
       <AiFillDelete className={DeleteButtonCSS.icon} />
     </button>
   );

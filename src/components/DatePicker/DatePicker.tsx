@@ -27,7 +27,6 @@ const DatePicker = ({
               renderInput={(params) => (
                 <TextField {...params} className={DatePickerCSS.input} />
               )}
-              data-testid="datePicker"
             />
           );
         } else {
@@ -39,7 +38,6 @@ const DatePicker = ({
               renderInput={(params) => (
                 <TextField {...params} className={DatePickerCSS.input} />
               )}
-              data-testid="datePicker"
             />
           );
         }
