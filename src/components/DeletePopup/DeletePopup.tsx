@@ -38,11 +38,20 @@ const DeletePopup = ({
       PaperProps={{
         style: { boxShadow: "none" },
       }}
+      data-testid="delete-popup"
     >
       <DialogTitle>{text}</DialogTitle>
       <DialogActions>
-        <SubmitButton text={t("yes")} onClick={deleteClick} />
-        <SubmitButton text={t("no")} onClick={hidePopup} />
+        <SubmitButton
+          text={t("yes")}
+          onClick={deleteClick}
+          data-testid="delete-popup-yes-button"
+        />
+        <SubmitButton
+          text={t("no")}
+          onClick={hidePopup}
+          data-testid="delete-popup-no-button"
+        />
       </DialogActions>
     </Dialog>
   );
