@@ -2,8 +2,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
 import { EditButton } from ".";
 
-describe("DetailsButton tests:", () => {
-  test("should render DetailsButton component", () => {
+describe("EditButton tests:", () => {
+  test("should render EditButton component", () => {
     render(
       <Router>
         <EditButton id={0} />
