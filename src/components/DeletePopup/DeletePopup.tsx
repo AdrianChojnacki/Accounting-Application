@@ -40,7 +40,7 @@ const DeletePopup = ({
       }}
       data-testid="delete-popup"
     >
-      <DialogTitle>{text}</DialogTitle>
+      <DialogTitle data-testid="delete-popup-text">{text}</DialogTitle>
       <DialogActions>
         <SubmitButton
           text={t("yes")}

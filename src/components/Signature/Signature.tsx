@@ -22,7 +22,12 @@ const Signature = ({ text }: { text: string }) => {
   };
 
   return (
-    <p ref={signature} onClick={handleClick} className={SignatureCSS.signature}>
+    <p
+      ref={signature}
+      onClick={handleClick}
+      className={SignatureCSS.signature}
+      data-testid="signature"
+    >
       {text}
     </p>
   );

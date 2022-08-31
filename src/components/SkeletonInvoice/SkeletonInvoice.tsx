@@ -11,7 +11,7 @@ import { SkeletonText } from "..";
 const SkeletonInvoice = () => {
   return (
     <>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} data-testid="skeleton-invoice">
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableBody>
             <TableRow>
