@@ -8,7 +8,7 @@ const Header = () => {
   const { t } = useTranslation();
 
   return (
-    <header className={HeaderCSS.header}>
+    <header className={HeaderCSS.header} data-testid="header">
       <Stack
         spacing={2}
         direction="row"

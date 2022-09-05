@@ -17,6 +17,7 @@ class NotFound extends Component<INotFoundProps> {
     return (
       <h1
         className={NotFoundCSS.title}
+        data-testid="not-found"
       >{`${this.state.text} has not been found`}</h1>
     );
   }

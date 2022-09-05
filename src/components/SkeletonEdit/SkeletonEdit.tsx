@@ -11,7 +11,7 @@ import { SkeletonText } from "..";
 const SkeletonEdit = () => {
   return (
     <>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} data-testid="skeleton-edit">
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableBody>
             <TableRow>

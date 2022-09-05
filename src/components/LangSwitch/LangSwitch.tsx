@@ -9,7 +9,7 @@ const LangSwitch = () => {
   };
 
   return (
-    <FormControl size="small">
+    <FormControl size="small" data-testid="lang-switch">
       <Select
         value={language}
         onChange={handleChange}

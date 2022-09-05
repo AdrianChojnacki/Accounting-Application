@@ -58,6 +58,7 @@
     "no-console": 0,
     "no-else-return": 0,
     "no-plusplus": 0,
-    "eqeqeq": 0
+    "eqeqeq": 0,
+    "@typescript-eslint/no-unused-vars": 1
   }
 }

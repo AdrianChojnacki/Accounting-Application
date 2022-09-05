@@ -5,7 +5,11 @@ import DetailsButtonCSS from "./DetailsButton.module.css";
 const DetailsButton = ({ id }: { id: number }) => {
   return (
     <Link to={`/invoice/${id}`}>
-      <button className={DetailsButtonCSS.btn} type="button">
+      <button
+        className={DetailsButtonCSS.btn}
+        type="button"
+        data-testid="details-button"
+      >
         <BiShow className={DetailsButtonCSS.icon} />
       </button>
     </Link>

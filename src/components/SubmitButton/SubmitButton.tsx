@@ -9,6 +9,7 @@ const SubmitButton = ({ text, onClick }: ISubmitButtonProps) => {
       variant="contained"
       className={SubmitButtonCSS.btn}
       onClick={onClick}
+      data-testid="submit-button"
     >
       {text}
     </Button>

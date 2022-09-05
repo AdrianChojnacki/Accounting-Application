@@ -32,8 +32,9 @@ const SuccessPopup = ({ text }: { text: string }) => {
       PaperProps={{
         style: { boxShadow: "none" },
       }}
+      data-testid="success-popup"
     >
-      <DialogTitle>{text}</DialogTitle>
+      <DialogTitle data-testid="success-popup-text">{text}</DialogTitle>
       <DialogActions>
         <SubmitButton text={t("ok")} onClick={hideSuccessPopup} />
       </DialogActions>
